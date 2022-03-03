@@ -1,0 +1,17 @@
+﻿@model BookShare.Models.Entities.UserModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+<form action="/Users/Create" method="post" enctype = "multipart/form-data" >
+    <input type="text" name="Name" placeholder="Name" />
+    <input type="text" name="Email" placeholder="Email"/>
+    <input type="text" name="Phone" placeholder="Phone" />
+    <input type="text" name="Address" placeholder="Address" />
+    <input type="file" name="Picture" />
+    <input type="hidden" name="Role" value="User" />
+    <input type="submit" value="Add" />
+</form>

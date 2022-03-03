@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BookSharingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BookSharingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Authors">
           <Key>
             <PropertyRef Name="Id" />
@@ -134,7 +134,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Pictutre" Type="varchar" MaxLength="250" />
+          <Property Name="Picture" Type="varchar" MaxLength="250" />
           <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
@@ -449,7 +449,8 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
             <End Role="Shops" EntitySet="Shops" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookSharingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -544,6 +545,18 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <NavigationProperty Name="User1" Relationship="Self.FK_Returns_Users1" FromRole="Returns" ToRole="Users" />
           <NavigationProperty Name="Sells" Relationship="Self.FK_Sells_Returns" FromRole="Returns" ToRole="Sells" />
         </EntityType>
+        <EntityType Name="SellerDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellerId" Type="Int32" Nullable="false" />
+          <Property Name="Nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ShopDocuments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_SellerDetails_Users" FromRole="SellerDetails" ToRole="Users" />
+        </EntityType>
         <EntityType Name="Sell">
           <Key>
             <PropertyRef Name="Id" />
@@ -562,12 +575,12 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Shops" FromRole="Shops" ToRole="BookDetails" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shops" FromRole="Shops" ToRole="OrderDetails" />
           <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Shops" FromRole="Shops" ToRole="Returns" />
           <NavigationProperty Name="User" Relationship="Self.FK_Shop_Users" FromRole="Shops" ToRole="Users" />
-          <Property Name="ShopNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -586,7 +599,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Pictutre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -595,8 +608,8 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Users" FromRole="Users" ToRole="Returns" />
           <NavigationProperty Name="Returns1" Relationship="Self.FK_Returns_Users1" FromRole="Users" ToRole="Returns" />
+          <NavigationProperty Name="SellerDetails" Relationship="Self.FK_SellerDetails_Users" FromRole="Users" ToRole="SellerDetails" />
           <NavigationProperty Name="Shops" Relationship="Self.FK_Shop_Users" FromRole="Users" ToRole="Shops" />
-          <NavigationProperty Name="SellerDetails" Relationship="BookSharingModel.FK_SellerDetails_Users" FromRole="User" ToRole="SellerDetail" />
         </EntityType>
         <EntityType Name="Discount">
           <Key>
@@ -801,6 +814,18 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SellerDetails_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="SellerDetails" Type="Self.SellerDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SellerDetails">
+              <PropertyRef Name="SellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Shop_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
           <End Role="Shops" Type="Self.Shop" Multiplicity="*" />
@@ -820,6 +845,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Returns" EntityType="Self.Return" />
+          <EntitySet Name="SellerDetails" EntityType="Self.SellerDetail" />
           <EntitySet Name="Sells" EntityType="Self.Sell" />
           <EntitySet Name="Shops" EntityType="Self.Shop" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -889,40 +915,15 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
             <End Role="Returns" EntitySet="Returns" />
             <End Role="Sells" EntitySet="Sells" />
           </AssociationSet>
+          <AssociationSet Name="FK_SellerDetails_Users" Association="Self.FK_SellerDetails_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="SellerDetails" EntitySet="SellerDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Shop_Users" Association="Self.FK_Shop_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Shops" EntitySet="Shops" />
           </AssociationSet>
-          <EntitySet Name="SellerDetails" EntityType="BookSharingModel.SellerDetail" />
-          <AssociationSet Name="FK_SellerDetails_Users" Association="BookSharingModel.FK_SellerDetails_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="SellerDetail" EntitySet="SellerDetails" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="SellerDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SellerId" Type="Int32" Nullable="false" />
-          <Property Name="Nid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShopNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShopDocuments" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="BookSharingModel.FK_SellerDetails_Users" FromRole="SellerDetail" ToRole="User" />
-        </EntityType>
-        <Association Name="FK_SellerDetails_Users">
-          <End Type="BookSharingModel.User" Role="User" Multiplicity="1" />
-          <End Type="BookSharingModel.SellerDetail" Role="SellerDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SellerDetail">
-              <PropertyRef Name="SellerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1004,6 +1005,18 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SellerDetails">
+            <EntityTypeMapping TypeName="BookSharingModel.SellerDetail">
+              <MappingFragment StoreEntitySet="SellerDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SellerId" ColumnName="SellerId" />
+                <ScalarProperty Name="Nid" ColumnName="Nid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
+                <ScalarProperty Name="ShopDocuments" ColumnName="ShopDocuments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Sells">
             <EntityTypeMapping TypeName="BookSharingModel.Sell">
               <MappingFragment StoreEntitySet="Sells">
@@ -1017,11 +1030,11 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <EntitySetMapping Name="Shops">
             <EntityTypeMapping TypeName="BookSharingModel.Shop">
               <MappingFragment StoreEntitySet="Shops">
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1042,7 +1055,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Pictutre" ColumnName="Pictutre" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -1057,18 +1070,6 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="Promocode" ColumnName="Promocode" />
                 <ScalarProperty Name="ValidationTime" ColumnName="ValidationTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SellerDetails">
-            <EntityTypeMapping TypeName="BookSharingModel.SellerDetail">
-              <MappingFragment StoreEntitySet="SellerDetails">
-                <ScalarProperty Name="ShopDocuments" ColumnName="ShopDocuments" />
-                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Nid" ColumnName="Nid" />
-                <ScalarProperty Name="SellerId" ColumnName="SellerId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

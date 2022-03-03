@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookSharingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Details" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Books" Relationship="Self.FK_Books_Authors" FromRole="Authors" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="BookDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellerId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_BookDetails_Books" FromRole="BookDetails" ToRole="Books" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_BookDetails_Shops" FromRole="BookDetails" ToRole="Shops" />
+    <NavigationProperty Name="User" Relationship="Self.FK_BookDetails_Users" FromRole="BookDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Edition" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Publisher" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Language" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumberOfPages" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ISBN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Author" Relationship="Self.FK_Books_Authors" FromRole="Books" ToRole="Authors" />
+    <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Books" FromRole="Books" ToRole="BookDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Books" FromRole="Books" ToRole="OrderDetails" />
+    <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Books" FromRole="Books" ToRole="Returns" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="SellerId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_OrderDetails_Books" FromRole="OrderDetails" ToRole="Books" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_OrderDetails_Shops" FromRole="OrderDetails" ToRole="Shops" />
+    <NavigationProperty Name="User" Relationship="Self.FK_OrderDetails_Users" FromRole="OrderDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+    <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Orders" FromRole="Orders" ToRole="Returns" />
+    <NavigationProperty Name="Sells" Relationship="Self.FK_Sells_Orders1" FromRole="Orders" ToRole="Sells" />
+  </EntityType>
+  <EntityType Name="Return">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="SellerId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Returns_Books" FromRole="Returns" ToRole="Books" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Returns_Orders" FromRole="Returns" ToRole="Orders" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK_Returns_Shops" FromRole="Returns" ToRole="Shops" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Returns_Users" FromRole="Returns" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_Returns_Users1" FromRole="Returns" ToRole="Users" />
+    <NavigationProperty Name="Sells" Relationship="Self.FK_Sells_Returns" FromRole="Returns" ToRole="Sells" />
+  </EntityType>
+  <EntityType Name="SellerDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellerId" Type="Int32" Nullable="false" />
+    <Property Name="Nid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShopDocuments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_SellerDetails_Users" FromRole="SellerDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Sell">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ReturnId" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Sells_Orders1" FromRole="Sells" ToRole="Orders" />
+    <NavigationProperty Name="Return" Relationship="Self.FK_Sells_Returns" FromRole="Sells" ToRole="Returns" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Shops" FromRole="Shops" ToRole="BookDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shops" FromRole="Shops" ToRole="OrderDetails" />
+    <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Shops" FromRole="Shops" ToRole="Returns" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Shop_Users" FromRole="Shops" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Users" FromRole="Users" ToRole="BookDetails" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Users" FromRole="Users" ToRole="OrderDetails" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+    <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Users" FromRole="Users" ToRole="Returns" />
+    <NavigationProperty Name="Returns1" Relationship="Self.FK_Returns_Users1" FromRole="Users" ToRole="Returns" />
+    <NavigationProperty Name="SellerDetails" Relationship="Self.FK_SellerDetails_Users" FromRole="Users" ToRole="SellerDetails" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_Shop_Users" FromRole="Users" ToRole="Shops" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="ValidationTime" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Percentage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Promocode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ValidationTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Books_Authors">
+    <End Role="Authors" Type="Self.Author" Multiplicity="1" />
+    <End Role="Books" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookDetails_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookDetails" Type="Self.BookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookDetails_Shops">
+    <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+    <End Role="BookDetails" Type="Self.BookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookDetails">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookDetails_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="BookDetails" Type="Self.BookDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookDetails">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Returns_Books">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="Returns" Type="Self.Return" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Shops">
+    <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Returns_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Returns" Type="Self.Return" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sells_Orders1">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="Sells" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sells">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Returns_Shops">
+    <End Role="Shops" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Returns" Type="Self.Return" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="ShopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Returns_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Returns" Type="Self.Return" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Returns_Users1">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Returns" Type="Self.Return" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Returns">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sells_Returns">
+    <End Role="Returns" Type="Self.Return" Multiplicity="0..1" />
+    <End Role="Sells" Type="Self.Sell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Returns">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sells">
+        <PropertyRef Name="ReturnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerDetails_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="SellerDetails" Type="Self.SellerDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SellerDetails">
+        <PropertyRef Name="SellerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shop_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Shops" Type="Self.Shop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookSharingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="BookDetails" EntityType="Self.BookDetail" />
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Returns" EntityType="Self.Return" />
+    <EntitySet Name="SellerDetails" EntityType="Self.SellerDetail" />
+    <EntitySet Name="Sells" EntityType="Self.Sell" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Discounts" EntityType="Self.Discount" />
+    <AssociationSet Name="FK_Books_Authors" Association="Self.FK_Books_Authors">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookDetails_Books" Association="Self.FK_BookDetails_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="BookDetails" EntitySet="BookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookDetails_Shops" Association="Self.FK_BookDetails_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="BookDetails" EntitySet="BookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookDetails_Users" Association="Self.FK_BookDetails_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BookDetails" EntitySet="BookDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Books" Association="Self.FK_OrderDetails_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Returns_Books" Association="Self.FK_Returns_Books">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Shops" Association="Self.FK_OrderDetails_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_Users" Association="Self.FK_OrderDetails_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Returns_Orders" Association="Self.FK_Returns_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sells_Orders1" Association="Self.FK_Sells_Orders1">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Sells" EntitySet="Sells" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Returns_Shops" Association="Self.FK_Returns_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Returns_Users" Association="Self.FK_Returns_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Returns_Users1" Association="Self.FK_Returns_Users1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Returns" EntitySet="Returns" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sells_Returns" Association="Self.FK_Sells_Returns">
+      <End Role="Returns" EntitySet="Returns" />
+      <End Role="Sells" EntitySet="Sells" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerDetails_Users" Association="Self.FK_SellerDetails_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SellerDetails" EntitySet="SellerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shop_Users" Association="Self.FK_Shop_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,16 +1,21 @@
 ﻿@model BookShare.Models.Entities.UserModel
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
 <h2>Create</h2>
 
 
-<form action="/Users/Create" method="post" enctype = "multipart/form-data" >
-    <input type="text" name="Name" placeholder="Name" />
-    <input type="text" name="Email" placeholder="Email"/>
-    <input type="text" name="Phone" placeholder="Phone" />
-    <input type="text" name="Address" placeholder="Address" />
+<form action="/Users/Create" method="post" enctype="multipart/form-data">
+    <input type="text" name="Name" value="@Model.Name" placeholder="Name" />
+    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <input type="text" name="Email" value="@Model.Email" placeholder="Email" />
+    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    <input type="text" name="Phone" value="@Model.Phone" placeholder="Phone" />
+    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+    <input type="text" name="Address" value="@Model.Address" placeholder="Address" />
+    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
     <input type="file" name="Picture" />
     <input type="hidden" name="Role" value="User" />
     <input type="submit" value="Add" />

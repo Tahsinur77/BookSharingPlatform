@@ -15,7 +15,7 @@ namespace BookShare.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return View(new UserModel());
         }
 
         [HttpPost]

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 
 namespace BookShare.Controllers
 {
@@ -39,10 +40,26 @@ namespace BookShare.Controllers
                 BookSharingEntities db = new BookSharingEntities();
                 db.Users.Add(u);
                 db.SaveChanges();
+                return RedirectToAction("UserList");
             }
             
 
             return View(user);
         }
+
+        [HttpGet]
+        public ActionResult UserList()
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var list = db.Users.ToList();
+            var config = new MapperConfiguration(cgf => cgf.CreateMap<User,UserModel>());
+            var mapper = new Mapper(config);
+            var listModel = mapper.Map<List<UserModel>>(list);
+            return View(listModel);
+        }
+
+        
+        
+
     }
 }

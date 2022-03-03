@@ -79,3 +79,5 @@ D:\11Semester\BookSharingPlatform\BookShare\BookShare\obj\Debug\BookShare.csproj
 D:\11Semester\BookSharingPlatform\BookShare\BookShare\obj\Debug\BookShare.csproj.CopyComplete
 D:\11Semester\BookSharingPlatform\BookShare\BookShare\obj\Debug\BookShare.dll
 D:\11Semester\BookSharingPlatform\BookShare\BookShare\obj\Debug\BookShare.pdb
+D:\11Semester\BookSharingPlatform\BookShare\BookShare\bin\AutoMapper.dll
+D:\11Semester\BookSharingPlatform\BookShare\BookShare\bin\AutoMapper.xml

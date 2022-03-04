@@ -9,7 +9,8 @@ namespace BookShare.Controllers
     public class SellersController : Controller
     {
         // GET: Sellers
-        public ActionResult Index()
+        
+        public ActionResult SellerRegistration()
         {
             return View();
         }

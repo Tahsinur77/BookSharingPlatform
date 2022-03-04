@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using BookShare.Auth;
 
 namespace BookShare.Controllers
 {
@@ -125,6 +126,7 @@ namespace BookShare.Controllers
             return RedirectToAction("UserList");
         }
 
+        [UserValidation]
         public ActionResult UserDash()
         {
             return View();

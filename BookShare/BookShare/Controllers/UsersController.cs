@@ -41,6 +41,7 @@ namespace BookShare.Controllers
                 u.Address = user.Address;
                 u.Role = user.Role;
                 u.Picture = ImageName;
+                u.Password = user.Password;
 
                 BookSharingEntities db = new BookSharingEntities();
                 db.Users.Add(u);
@@ -99,6 +100,7 @@ namespace BookShare.Controllers
                 u.Address = user.Address;
                 u.Role = user.Role;
                 u.Picture = ImageName;
+                u.Password = user.Password;
 
                 BookSharingEntities db = new BookSharingEntities();
                 var old = (from b in db.Users
@@ -121,6 +123,11 @@ namespace BookShare.Controllers
             db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("UserList");
+        }
+
+        public ActionResult UserDash()
+        {
+            return View();
         }
 
         

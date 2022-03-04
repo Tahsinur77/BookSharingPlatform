@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="615712121be44636a6375d520aa01c42" Name="Diagram1">
-        <EntityTypeShape EntityType="BookSharingModel.Author" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="4d56ff9d87b34f538553ae40a660538a" Name="Diagram1">
+        <EntityTypeShape EntityType="BookSharingModel.Author" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.BookDetail" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.Book" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.OrderDetail" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="BookSharingModel.Sell" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.Shop" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.User" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.User" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BookSharingModel.Discount" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="BookSharingModel.FK_Books_Authors" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_BookDetails_Books" ManuallyRouted="false" />

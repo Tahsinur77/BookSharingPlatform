@@ -138,6 +138,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
           <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookDetails_Books">
           <End Role="Books" Type="Self.Books" Multiplicity="1" />
@@ -603,6 +604,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Users" FromRole="Users" ToRole="BookDetails" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Users" FromRole="Users" ToRole="OrderDetails" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
@@ -1059,6 +1061,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

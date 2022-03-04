@@ -149,6 +149,7 @@
     <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="BookDetails" Relationship="Self.FK_BookDetails_Users" FromRole="Users" ToRole="BookDetails" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Users" FromRole="Users" ToRole="OrderDetails" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />

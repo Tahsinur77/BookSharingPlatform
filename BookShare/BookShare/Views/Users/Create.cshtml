@@ -18,5 +18,6 @@
     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
     <input type="file" name="Picture" />
     <input type="hidden" name="Role" value="User" />
+    <input type="password" name="Password" value="@Model.Password" placeholder="Password" />
     <input type="submit" value="Add" />
 </form>

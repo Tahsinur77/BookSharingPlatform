@@ -133,6 +133,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_BookDetails_Books">
     <End Role="Books" Type="Self.Books" Multiplicity="1" />

@@ -24,10 +24,15 @@ namespace BookShare.Controllers
         {
             if (ModelState.IsValid)
             {
-                string ImageName = System.IO.Path.GetFileName(Picture.FileName);
-                string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                string ImageName = null;
+                if(Picture != null)
+                {
+                    ImageName = System.IO.Path.GetFileName(Picture.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
 
-                Picture.SaveAs(physicalPath);
+                    Picture.SaveAs(physicalPath);
+                }
+                
 
                 User u = new User();
                 u.Name = user.Name;
@@ -78,11 +83,14 @@ namespace BookShare.Controllers
 
             if (ModelState.IsValid)
             {
-                string ImageName = System.IO.Path.GetFileName(Picture.FileName);
-                string physicalPath = Server.MapPath("~/Images/" + ImageName);
-
-                Picture.SaveAs(physicalPath);
-
+                string ImageName = user.Picture;
+                if (Picture != null)
+                {
+                    ImageName = System.IO.Path.GetFileName(Picture.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                    Picture.SaveAs(physicalPath);
+                }
+           
                 User u = new User();
                 u.Id = user.Id;
                 u.Name = user.Name;

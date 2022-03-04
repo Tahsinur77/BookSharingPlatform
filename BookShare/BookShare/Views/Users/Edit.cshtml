@@ -16,6 +16,7 @@
     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
     <input type="text" name="Address" value="@Model.Address" placeholder="Address" />
     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+    <img style="height:200px;width:200px" src="~/Images/@Model.Picture" />
     <input type="file" name="Picture" value="@Model.Picture" />
     <input type="hidden" name="Role" value="User" />
     <input type="submit" value="Add" />

@@ -15,6 +15,7 @@
         <th>Phone</th>
         <th>Address</th>
         <th>Role</th>
+        <th>Action</th>
     </tr>
 
     @foreach (var list in Model)
@@ -26,6 +27,10 @@
             <td>@list.Phone</td>
             <td>@list.Address</td>
             <td>@list.Role</td>
+            <td>
+                <a class="btn btn-danger" href="/Users/Edit/@list.Id">Edit</a>
+                <a class="btn btn-success" href="/Users/Delete/@list.Id">Delete</a>
+            </td>
         </tr>
     }
 

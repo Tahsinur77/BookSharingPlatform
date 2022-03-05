@@ -54,5 +54,19 @@ namespace BookShare.Controllers
             ViewBag.Error("The Shop Allready register");
             return View();
         }
+
+        public ActionResult Delete(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var sellerDetails = (from x in db.SellerDetails
+                                 where x.Id.Equals(id)
+                                 select x).ToList();
+            foreach(var se in sellerDetails)
+            {
+                db.SellerDetails.Remove(se);
+            }
+
+            return RedirectToAction("UserList","User");            
+        }
     }
 }

@@ -119,6 +119,18 @@ namespace BookShare.Controllers
         public ActionResult Delete(int id)
         {
             BookSharingEntities db = new BookSharingEntities();
+
+            //delete from SellerDetails Table
+            var sellerDetails = (from x in db.SellerDetails
+                                 where x.SellerId.Equals(id)
+                                 select x).ToList();
+            foreach (var se in sellerDetails)
+            {
+                db.SellerDetails.Remove(se);
+            }
+
+
+            //Delete from User Table
             var user = (from u in db.Users
                         where u.Id.Equals(id)
                         select u).FirstOrDefault();

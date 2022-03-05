@@ -38,7 +38,7 @@ namespace BookShare.Controllers
 
                 Session["user"] = jsonUser;
                 Session["userID"] = user.Id;
-
+                if (user.Role == "Admin") return RedirectToAction("AdminDash", "Admins");
                 return RedirectToAction("UserDash", "Users");
             }
 

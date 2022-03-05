@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Auth\AdminValidation.cs" />
     <Compile Include="Auth\UserValidation.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -256,11 +257,11 @@
     <Content Include="Views\Users\UserDash.cshtml" />
     <Content Include="Views\Shops\ShopRegister.cshtml" />
     <Content Include="Views\Sellers\SellerRegistration.cshtml" />
+    <Content Include="Views\Admins\AdminDash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Admins\" />
     <Folder Include="Views\Shop\" />
     <Folder Include="Views\User\" />
   </ItemGroup>

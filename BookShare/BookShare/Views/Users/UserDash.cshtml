@@ -8,6 +8,11 @@
 
 <p>Welcome to User Dashboard</p>
 
+@if (TempData["error"] != null)
+{
+    <span class="label-danger">@TempData["error"]</span><br />
+}
+
 <a class="btn btn-success" href="/Sellers/SellerRegistration">Registration as seller</a>
 
 <a class="btn btn-danger" href="/Login/Logout">Log Out</a>

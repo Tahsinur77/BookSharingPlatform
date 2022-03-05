@@ -17,6 +17,17 @@ namespace BookShare.Controllers
         [HttpGet]
         public ActionResult SellerRegistration()
         {
+            BookSharingEntities db = new BookSharingEntities();
+            var sellerId = System.Convert.ToInt32( Session["userId"]);
+            var flag = (from x in db.SellerDetails
+                        where x.SellerId.Equals(sellerId)
+                        select x).FirstOrDefault();
+
+            if (flag != null && flag.Status == "painding")
+            {
+                TempData["error"] = "Already register for seller";
+                return RedirectToAction("UserDash","Users");
+            }
             return View();
         }
         [HttpPost]

@@ -37,6 +37,7 @@ namespace BookShare.Controllers
                 string jsonUser = new JavaScriptSerializer().Serialize(user);
 
                 Session["user"] = jsonUser;
+                Session["userID"] = user.Id;
 
                 return RedirectToAction("UserDash", "Users");
             }
@@ -49,6 +50,7 @@ namespace BookShare.Controllers
         public ActionResult Logout()
         {
             Session.Remove("user");
+            Session.Remove("userId");
             return RedirectToAction("Login");
         }
 

@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
+    <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +189,8 @@
     <Compile Include="Models\Database\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\SellerDetailsModel.cs" />
+    <Compile Include="Models\Entities\ShopModel.cs" />
     <Compile Include="Models\Entities\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -250,11 +253,13 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Users\UserDash.cshtml" />
+    <Content Include="Views\Shops\ShopRegister.cshtml" />
+    <Content Include="Views\Sellers\SellerRegistration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Sellers\" />
+    <Folder Include="Views\Shop\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

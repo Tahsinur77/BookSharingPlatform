@@ -1,0 +1,17 @@
+﻿@model BookShare.Models.Entities.ShopModel
+@{
+    ViewBag.Title = "ShopRegister";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>ShopRegister</h2>
+
+
+<form action="/Shops/ShopRegister" method="post" enctype="multipart/form-data">
+    <input type="text" name="Name" placeholder="Shop Name" />
+    <input type="hidden" name="UserId" value="@Session["userId"]" />
+    <input type="text" name="ShopNumber" placeholder="Shop number"/>
+    
+    <input type="submit" value="Add" />
+</form>
+

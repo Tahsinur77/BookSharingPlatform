@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "SellerRegistration";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>SellerRegistration</h2>
+
+<form action="/Sellers/SellerRegistration" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="SellerId" value="@Session["userId"]" />
+    <input type="text" name="Nid" placeholder="Nid" />
+    <input type="hidden" name="Status" value="painding" />
+    <input type="text" name="ShopNumber" placeholder="Shop Number" />
+    <input type="file" name="ShopDocuments" placeholder="ShopDocuments" />
+    <input type="submit" value="submit" />
+</form>

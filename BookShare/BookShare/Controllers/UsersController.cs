@@ -85,7 +85,11 @@ namespace BookShare.Controllers
 
             if (ModelState.IsValid)
             {
-                string ImageName = user.Picture;
+                BookSharingEntities db = new BookSharingEntities();
+                var old = (from b in db.Users
+                           where b.Id.Equals(user.Id)
+                           select b).FirstOrDefault();
+                string ImageName = old.Picture;
                 if (Picture != null)
                 {
                     ImageName = System.IO.Path.GetFileName(Picture.FileName);
@@ -103,10 +107,7 @@ namespace BookShare.Controllers
                 u.Picture = ImageName;
                 u.Password = user.Password;
 
-                BookSharingEntities db = new BookSharingEntities();
-                var old = (from b in db.Users
-                           where b.Id.Equals(user.Id)
-                           select b).FirstOrDefault();
+                
                 db.Entry(old).CurrentValues.SetValues(u);
                 db.SaveChanges();
 

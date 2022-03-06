@@ -79,5 +79,13 @@ namespace BookShare.Controllers
 
             return RedirectToAction("UserList","User");            
         }
+
+        public ActionResult SellerDash()
+        {
+            return View();
+        }
+        
+
+        
     }
 }

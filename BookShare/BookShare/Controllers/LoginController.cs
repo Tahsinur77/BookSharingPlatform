@@ -16,7 +16,14 @@ namespace BookShare.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            if (Session["user"] != null) return RedirectToAction("UserDash","Users");
+            if (Session["user"] != null)
+            {
+                var jsonUser = Session["user"].ToString();
+                var user = new JavaScriptSerializer().Deserialize<UserModel>(jsonUser);
+                if (user.Role == "Admin") return RedirectToAction("AdminDash", "Admins");
+                else if (user.Role == "User") return RedirectToAction("UserDash", "Users");
+                else if (user.Role == "Seller") return RedirectToAction("SellerDash", "Sellers");
+            }
             return View();
         }
         [HttpPost]
@@ -39,6 +46,7 @@ namespace BookShare.Controllers
                 Session["user"] = jsonUser;
                 Session["userId"] = user.Id;
                 if (user.Role == "Admin") return RedirectToAction("AdminDash", "Admins");
+                else if (user.Role == "Seller") return RedirectToAction("SellerDash", "Sellers");
                 return RedirectToAction("UserDash", "Users");
             }
 

@@ -260,6 +260,8 @@
     <Content Include="Views\Sellers\SellerRegistration.cshtml" />
     <Content Include="Views\Admins\AdminDash.cshtml" />
     <Content Include="Views\Admins\SellerPaindingList.cshtml" />
+    <Content Include="Views\Sellers\SellerDash.cshtml" />
+    <Content Include="Views\Admins\SellerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

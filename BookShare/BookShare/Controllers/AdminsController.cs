@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using AutoMapper;
 using BookShare.Auth;
 using BookShare.Models.Database;
@@ -50,5 +51,60 @@ namespace BookShare.Controllers
                 Response.BinaryWrite(FileBuffer);
             }
         }
+
+        public ActionResult Approve(int id)
+        {
+           
+            BookSharingEntities db = new BookSharingEntities();
+
+            var oldSellerDetails = (from y in db.SellerDetails
+                                    where y.SellerId.Equals(id)
+                                    select y).FirstOrDefault();
+            SellerDetail se = new SellerDetail();
+            se.Id = oldSellerDetails.Id;
+            se.SellerId = oldSellerDetails.SellerId;
+            se.Nid = oldSellerDetails.Nid;
+            se.Status = "Approved";
+            se.ShopNumber = oldSellerDetails.ShopNumber;
+            se.ShopDocuments = oldSellerDetails.ShopDocuments;
+
+            var old = (from x in db.Users
+                       where x.Id.Equals(id)
+                       select x).FirstOrDefault();
+
+            User u = new User();
+            u.Id = old.Id;
+            u.Name = old.Name;
+            u.Email = old.Email;
+            u.Phone = old.Phone;
+            u.Address = old.Address;
+            u.Role = "Seller";
+            u.Picture = old.Picture;
+            u.Password = old.Password;
+
+            db.Entry(old).CurrentValues.SetValues(u);
+            db.Entry(oldSellerDetails).CurrentValues.SetValues(se);
+            db.SaveChanges();
+
+
+
+            return RedirectToAction("SellerList");
+        }
+
+        public ActionResult SellerList()
+        {
+            //userSeller model diye kaj kora lagbe
+            BookSharingEntities db = new BookSharingEntities();
+            var list = (from x in db.Users
+                        where x.Role.Equals("Seller")
+                        select x).ToList();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
+            var mapper = new Mapper(config);
+            var listModel = mapper.Map<List<UserModel>>(list);
+
+            return View(listModel);
+        }
+
+        
     }
 }

@@ -192,6 +192,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
+    <Compile Include="Models\Entities\SellerDetailsUserModel.cs" />
     <Compile Include="Models\Entities\ShopModel.cs" />
     <Compile Include="Models\Entities\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\Shops\ShopRegister.cshtml" />
     <Content Include="Views\Sellers\SellerRegistration.cshtml" />
     <Content Include="Views\Admins\AdminDash.cshtml" />
+    <Content Include="Views\Admins\SellerPaindingList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

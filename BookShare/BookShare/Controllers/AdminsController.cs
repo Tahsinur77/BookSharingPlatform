@@ -35,11 +35,62 @@ namespace BookShare.Controllers
             return View(sellerDetailsUserModel);
         }
 
-
-        public ActionResult AllRequestedList()
+        [HttpGet]
+        public ActionResult AllRequestedList(string searchNid,string searchShopNumber,string searchStatus)
         {
+            int check = 0;
+            if (searchNid != "") check++;
+            if (searchShopNumber != "") check++;
+            if (searchStatus != "") check++;
             BookSharingEntities db = new BookSharingEntities();
-            var list = db.SellerDetails.ToList();
+            List<SellerDetail> list;
+
+            if ((searchNid == null && searchShopNumber == null && searchStatus ==null) || check==0)
+            {
+                list = db.SellerDetails.ToList();
+            }
+            else if(check == 1)
+            {
+                list = (from x in db.SellerDetails
+                        where x.ShopNumber.Equals(searchShopNumber) ||
+                        x.Nid.Equals(searchNid) ||
+                        x.Status.Equals(searchStatus)
+                        select x).ToList();
+            }
+            else if(check == 2)
+            {
+                if (searchNid != "" && searchShopNumber != "")
+                {
+                    list = (from x in db.SellerDetails
+                            where x.ShopNumber.Equals(searchShopNumber)
+                            && x.Nid.Equals(searchNid)
+                            select x).ToList();
+                }
+                else if (searchNid != "" && searchStatus != "")
+                {
+                    list = (from x in db.SellerDetails
+                            where x.Status.Equals(searchStatus)
+                            && x.Nid.Equals(searchNid)
+                            select x).ToList();
+                }
+                else
+                {
+                    list = (from x in db.SellerDetails
+                            where x.Status.Equals(searchStatus)
+                            && x.ShopNumber.Equals(searchShopNumber)
+                            select x).ToList();
+                }
+            }
+            else
+            {
+                list = (from x in db.SellerDetails
+                        where x.ShopNumber.Equals(searchShopNumber) &&
+                        x.Nid.Equals(searchNid) &&
+                        x.Status.Equals(searchStatus)
+                        select x).ToList();
+            }
+
+
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<SellerDetail, SellerDetailsUserModel>());
             var mapper = new Mapper(config);

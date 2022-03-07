@@ -7,6 +7,20 @@
 <h2>AllRequestedList</h2>
 
 
+<form action="/Admins/AllRequestedList" method="get">
+    <input type="text" name="searchNid" placeholder="Search by Nid" />
+    <input type="text" name="searchShopNumber" placeholder="search by Shop Number" />
+    <select name="searchStatus">
+        <option value="">None</option>
+        <option value="Deny">Deny</option>
+        <option value="Approved">Approve</option>
+        <option value="painding">Painding</option>
+    </select>
+    <input type="submit" value="search" />
+</form>
+<br />
+<br />
+
 <table class="table">
     <tr>
         <th>Picture</th>
@@ -17,7 +31,7 @@
         <th>Shop Number</th>
         <th>Shop Documents</th>
         <th>Status</th>
-        
+
     </tr>
     @foreach (var list in Model)
     {
@@ -30,7 +44,13 @@
             <td>@list.ShopNumber</td>
             <td><a class="btn btn-success" href="/Admins/Download/@list.Id">Download/View</a></td>
             <td>@list.Status</td>
-            
+
         </tr>
     }
+
 </table>
+
+@if (Model.Count == 0)
+{
+    <h3>Nothing Found</h3>
+}

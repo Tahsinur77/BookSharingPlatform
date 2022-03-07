@@ -55,6 +55,7 @@ namespace BookShare.Controllers
         }
 
         [HttpGet]
+        [AdminValidation]
         public ActionResult UserList()
         {
             BookSharingEntities db = new BookSharingEntities();

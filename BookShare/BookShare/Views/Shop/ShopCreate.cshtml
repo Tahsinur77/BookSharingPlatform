@@ -1,0 +1,24 @@
+﻿@model BookShare.Models.Entities.ShopModel
+@{
+    ViewBag.Title = "ShopCreate";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>ShopCreate</h2>
+
+@if(ViewBag.ShopNumber != null)
+{
+    <p>@ViewBag.ShopNumber</p>
+}
+
+<form action="/Shop/ShopCreate" method="post">
+    <input type="text" name="Name" placeholder="Shop Name" />
+    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    <input type="hidden" name="UserId" value="@Session["userId"]" />
+    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+    <input type="text" name="ShopNumber" placeholder="Shop Number" />
+    @Html.ValidationMessageFor(model => model.ShopNumber, "", new { @class = "text-danger" })
+    <input type="text" name="Location" placeholder="Shop Location" />
+    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+    <input type="submit" value="Add" />
+</form>

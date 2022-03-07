@@ -1,0 +1,36 @@
+﻿@model List<BookShare.Models.Entities.SellerDetailsUserModel>
+@{
+    ViewBag.Title = "AllRequestedList";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>AllRequestedList</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Nid</th>
+        <th>Shop Number</th>
+        <th>Shop Documents</th>
+        <th>Status</th>
+        
+    </tr>
+    @foreach (var list in Model)
+    {
+        <tr>
+            <td><img style="height:50px;width:50px;" src="~/Images/@list.User.Picture" /></td>
+            <td>@list.User.Name</td>
+            <td>@list.User.Email</td>
+            <td>@list.User.Phone</td>
+            <td>@list.Nid</td>
+            <td>@list.ShopNumber</td>
+            <td><a class="btn btn-success" href="/Admins/Download/@list.Id">Download/View</a></td>
+            <td>@list.Status</td>
+            
+        </tr>
+    }
+</table>

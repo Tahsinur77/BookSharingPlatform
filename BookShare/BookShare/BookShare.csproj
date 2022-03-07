@@ -130,11 +130,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Auth\AdminValidation.cs" />
+    <Compile Include="Auth\SellerOrAdminValidation.cs" />
     <Compile Include="Auth\UserValidation.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,11 +266,13 @@
     <Content Include="Views\Sellers\SellerDash.cshtml" />
     <Content Include="Views\Admins\SellerList.cshtml" />
     <Content Include="Views\Admins\SellerDetails.cshtml" />
+    <Content Include="Views\Admins\AllRequestedList.cshtml" />
+    <Content Include="Views\Shop\ShopCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Shop\" />
+    <Folder Include="Views\Book\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

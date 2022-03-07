@@ -82,6 +82,14 @@ namespace BookShare.Controllers
 
         public ActionResult SellerDash()
         {
+            bool flag = false;
+            int id = System.Convert.ToInt32(Session["userId"].ToString());
+            BookSharingEntities db = new BookSharingEntities();
+            var check = (from x in db.Shops
+                         where x.UserId.Equals(id)
+                         select x).FirstOrDefault();
+            if (check != null) flag = true;
+            ViewBag.ShopChecking = flag;
             return View();
         }
         

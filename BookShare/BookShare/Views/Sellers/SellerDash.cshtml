@@ -7,3 +7,10 @@
 <h2>SellerDash</h2>
 
 <a class="btn btn-danger" href="/Login/Logout">Logout</a>
+
+<br /><br />
+
+@if (ViewBag.ShopChecking == false)
+{
+    <a class="btn btn-success" href="/Shop/ShopCreate">Add Shop</a>
+}

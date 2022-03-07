@@ -35,6 +35,18 @@ namespace BookShare.Controllers
             return View(sellerDetailsUserModel);
         }
 
+
+        public ActionResult AllRequestedList()
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var list = db.SellerDetails.ToList();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<SellerDetail, SellerDetailsUserModel>());
+            var mapper = new Mapper(config);
+            var sellerDetailsUserModel = mapper.Map<List<SellerDetailsUserModel>>(list);
+            return View(sellerDetailsUserModel);
+        }
+
         public void Download(int id)
         {
             BookSharingEntities db = new BookSharingEntities();
@@ -59,6 +71,7 @@ namespace BookShare.Controllers
 
             var oldSellerDetails = (from y in db.SellerDetails
                                     where y.SellerId.Equals(id)
+                                    && y.Status.Equals("painding")
                                     select y).FirstOrDefault();
             SellerDetail se = new SellerDetail();
             se.Id = oldSellerDetails.Id;
@@ -96,6 +109,7 @@ namespace BookShare.Controllers
             BookSharingEntities db = new BookSharingEntities();
             var oldSellerDetails = (from y in db.SellerDetails
                                     where y.SellerId.Equals(id)
+                                    && y.Status.Equals("painding")
                                     select y).FirstOrDefault();
             SellerDetail se = new SellerDetail();
             se.Id = oldSellerDetails.Id;

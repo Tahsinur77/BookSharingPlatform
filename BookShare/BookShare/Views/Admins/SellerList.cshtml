@@ -14,6 +14,7 @@
         <th>Phone</th>
         <th>Role</th>
         <th>Address</th>
+        <th>Action</th>
        
     </tr>
 
@@ -25,9 +26,10 @@
             <td>@list.Email</td>
             <td>@list.Phone</td>
             <td>@list.Role</td>
-            <td>@list.Address</td>
-            
-            
+            <td>@list.Address</td> 
+            <td>
+                <a class="btn btn-primary" href="/Admins/SellerDetails/@list.Id">Details</a>
+            </td>
         </tr>
     }
 </table>

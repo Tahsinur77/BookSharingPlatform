@@ -124,6 +124,20 @@ namespace BookShare.Controllers
             return View(listModel);
         }
 
+        public ActionResult SellerDetails(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var sellerDetails = (from x in db.SellerDetails
+                                 where x.SellerId.Equals(id)
+                                 select x).FirstOrDefault();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<SellerDetail, SellerDetailsModel>());
+            var mapper = new Mapper(config);
+            var sellerDetailsModel = mapper.Map<SellerDetailsModel>(sellerDetails);
+
+            return View(sellerDetailsModel);
+        }
+
         
     }
 }

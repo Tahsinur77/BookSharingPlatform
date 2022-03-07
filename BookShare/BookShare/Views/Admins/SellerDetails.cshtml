@@ -1,0 +1,14 @@
+﻿@model BookShare.Models.Entities.SellerDetailsModel
+@{
+    ViewBag.Title = "SellerDetails";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>SellerDetails</h2>
+
+<ul>
+    <li>Nid : @Model.Nid</li>
+    <li>Status: @Model.Status</li>
+    <li>Shop Number : @Model.ShopNumber</li>
+    <li>Shop Document: <a class="btn btn-success" href="/Admins/Download/@Model.Id">Download/View</a></li>
+</ul>

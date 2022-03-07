@@ -91,6 +91,25 @@ namespace BookShare.Controllers
             return RedirectToAction("SellerList");
         }
 
+        public ActionResult Deny(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var oldSellerDetails = (from y in db.SellerDetails
+                                    where y.SellerId.Equals(id)
+                                    select y).FirstOrDefault();
+            SellerDetail se = new SellerDetail();
+            se.Id = oldSellerDetails.Id;
+            se.SellerId = oldSellerDetails.SellerId;
+            se.Nid = oldSellerDetails.Nid;
+            se.Status = "Deny";
+            se.ShopNumber = oldSellerDetails.ShopNumber;
+            se.ShopDocuments = oldSellerDetails.ShopDocuments;
+            db.Entry(oldSellerDetails).CurrentValues.SetValues(se);
+            db.SaveChanges();
+
+            return RedirectToAction("SellerPaindingList");
+        }
+
         public ActionResult SellerList()
         {
             //userSeller model diye kaj kora lagbe

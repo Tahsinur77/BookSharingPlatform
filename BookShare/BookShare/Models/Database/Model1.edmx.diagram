@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4d56ff9d87b34f538553ae40a660538a" Name="Diagram1">
-        <EntityTypeShape EntityType="BookSharingModel.Author" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.BookDetail" Width="1.5" PointX="5.25" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Book" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.OrderDetail" Width="1.5" PointX="8.25" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Order" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Return" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.SellerDetail" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Sell" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Shop" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.User" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookSharingModel.Discount" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="ebada891b4bd474790dcf9f881568a19" Name="Diagram1">
+        <EntityTypeShape EntityType="BookSharingModel.Author" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.BookDetail" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Book" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.OrderDetail" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Order" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Return" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.SellerDetail" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Sell" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.ShopChangeRequest" Width="1.5" PointX="3" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Shop" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.User" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookSharingModel.Discount" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="BookSharingModel.FK_Books_Authors" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_BookDetails_Books" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_BookDetails_Shops" ManuallyRouted="false" />
@@ -34,6 +35,7 @@
         <AssociationConnector Association="BookSharingModel.FK_Returns_Users1" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_Sells_Returns" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_SellerDetails_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="BookSharingModel.FK_ShopChangeRequest_Users" ManuallyRouted="false" />
         <AssociationConnector Association="BookSharingModel.FK_Shop_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

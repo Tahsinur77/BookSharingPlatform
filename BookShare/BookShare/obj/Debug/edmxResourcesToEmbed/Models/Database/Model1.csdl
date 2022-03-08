@@ -114,6 +114,18 @@
     <NavigationProperty Name="Order" Relationship="Self.FK_Sells_Orders1" FromRole="Sells" ToRole="Orders" />
     <NavigationProperty Name="Return" Relationship="Self.FK_Sells_Returns" FromRole="Sells" ToRole="Returns" />
   </EntityType>
+  <EntityType Name="ShopChangeRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ShopDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_ShopChangeRequest_Users" FromRole="ShopChangeRequests" ToRole="Users" />
+  </EntityType>
   <EntityType Name="Shop">
     <Key>
       <PropertyRef Name="Id" />
@@ -156,6 +168,7 @@
     <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Users" FromRole="Users" ToRole="Returns" />
     <NavigationProperty Name="Returns1" Relationship="Self.FK_Returns_Users1" FromRole="Users" ToRole="Returns" />
     <NavigationProperty Name="SellerDetails" Relationship="Self.FK_SellerDetails_Users" FromRole="Users" ToRole="SellerDetails" />
+    <NavigationProperty Name="ShopChangeRequests" Relationship="Self.FK_ShopChangeRequest_Users" FromRole="Users" ToRole="ShopChangeRequests" />
     <NavigationProperty Name="Shops" Relationship="Self.FK_Shop_Users" FromRole="Users" ToRole="Shops" />
   </EntityType>
   <EntityType Name="Discount">
@@ -373,6 +386,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ShopChangeRequest_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="ShopChangeRequests" Type="Self.ShopChangeRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShopChangeRequests">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Shop_Users">
     <End Role="Users" Type="Self.User" Multiplicity="1" />
     <End Role="Shops" Type="Self.Shop" Multiplicity="*" />
@@ -394,6 +419,7 @@
     <EntitySet Name="Returns" EntityType="Self.Return" />
     <EntitySet Name="SellerDetails" EntityType="Self.SellerDetail" />
     <EntitySet Name="Sells" EntityType="Self.Sell" />
+    <EntitySet Name="ShopChangeRequests" EntityType="Self.ShopChangeRequest" />
     <EntitySet Name="Shops" EntityType="Self.Shop" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -465,6 +491,10 @@
     <AssociationSet Name="FK_SellerDetails_Users" Association="Self.FK_SellerDetails_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="SellerDetails" EntitySet="SellerDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopChangeRequest_Users" Association="Self.FK_ShopChangeRequest_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ShopChangeRequests" EntitySet="ShopChangeRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_Shop_Users" Association="Self.FK_Shop_Users">
       <End Role="Users" EntitySet="Users" />

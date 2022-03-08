@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "RequestChangeShop";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>RequestChangeShop</h2>
+
+<form action="/Shop/RequestChangeShop" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="UserId" value="@Session["userId"]" />
+    <input type="text" name="Name" placeholder="ShopName" />
+    <input type="text" name="ShopNumber" placeholder="Shop Number" />
+    <input type="text" name="Location" placeholder="Location" />
+    <input type="file" name="ShopDocuments" placeholder="Shop Document" />
+    <input class="btn btn-success" type="submit" value="Request to change" />
+</form>

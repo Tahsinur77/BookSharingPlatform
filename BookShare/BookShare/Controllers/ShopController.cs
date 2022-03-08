@@ -51,5 +51,39 @@ namespace BookShare.Controllers
 
             return View(shopModel);
         }
+        [HttpGet]
+        public ActionResult RequestChangeShop()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RequestChangeShop(ShopChangeRequestModel shopChangeRequestModel,HttpPostedFileBase ShopDocuments)
+        {
+            if (ModelState.IsValid)
+            {
+                string ImageName = null;
+                if (ShopDocuments != null)
+                {
+                    ImageName = System.IO.Path.GetFileName(ShopDocuments.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+
+                    ShopDocuments.SaveAs(physicalPath);
+                }
+
+                ShopChangeRequest shopChangeRequest = new ShopChangeRequest();
+                shopChangeRequest.Name = shopChangeRequestModel.Name;
+                shopChangeRequest.UserId = shopChangeRequestModel.UserId;
+                shopChangeRequest.ShopNumber = shopChangeRequestModel.ShopNumber;
+                shopChangeRequest.ShopDocuments = ImageName;
+                shopChangeRequest.Location = shopChangeRequestModel.Location;
+
+                BookSharingEntities db = new BookSharingEntities();
+                db.ShopChangeRequests.Add(shopChangeRequest);
+                db.SaveChanges();
+                return RedirectToAction("SellerDash", "Sellers");
+                
+            }
+            return View(shopChangeRequestModel);
+        }
     }
 }

@@ -102,6 +102,17 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ReturnId" Type="int" />
   </EntityType>
+  <EntityType Name="ShopChangeRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="ShopNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ShopDocuments" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Shops">
     <Key>
       <PropertyRef Name="Id" />
@@ -351,6 +362,18 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ShopChangeRequest_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ShopChangeRequests" Type="Self.ShopChangeRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShopChangeRequests">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="BookSharingModelStoreContainer">
     <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BookDetails" EntityType="Self.BookDetails" Schema="dbo" store:Type="Tables" />
@@ -360,6 +383,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <EntitySet Name="Returns" EntityType="Self.Returns" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SellerDetails" EntityType="Self.SellerDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sells" EntityType="Self.Sells" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShopChangeRequests" EntityType="Self.ShopChangeRequests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -443,6 +467,10 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
     <AssociationSet Name="FK_Shop_Users" Association="Self.FK_Shop_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShopChangeRequest_Users" Association="Self.FK_ShopChangeRequest_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ShopChangeRequests" EntitySet="ShopChangeRequests" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

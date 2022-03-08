@@ -22,6 +22,7 @@ namespace BookShare.Models.Database
             this.Returns = new HashSet<Return>();
             this.Returns1 = new HashSet<Return>();
             this.SellerDetails = new HashSet<SellerDetail>();
+            this.ShopChangeRequests = new HashSet<ShopChangeRequest>();
             this.Shops = new HashSet<Shop>();
         }
     
@@ -40,6 +41,7 @@ namespace BookShare.Models.Database
         public virtual ICollection<Return> Returns { get; set; }
         public virtual ICollection<Return> Returns1 { get; set; }
         public virtual ICollection<SellerDetail> SellerDetails { get; set; }
+        public virtual ICollection<ShopChangeRequest> ShopChangeRequests { get; set; }
         public virtual ICollection<Shop> Shops { get; set; }
     }
 }

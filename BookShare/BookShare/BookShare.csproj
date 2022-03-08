@@ -138,7 +138,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
-    <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -188,6 +187,9 @@
     <Compile Include="Models\Database\Shop.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Database\ShopChangeRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Database\sysdiagram.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -196,6 +198,7 @@
     </Compile>
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsUserModel.cs" />
+    <Compile Include="Models\Entities\ShopChangeRequestModel.cs" />
     <Compile Include="Models\Entities\ShopModel.cs" />
     <Compile Include="Models\Entities\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -259,7 +262,6 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Users\UserDash.cshtml" />
-    <Content Include="Views\Shops\ShopRegister.cshtml" />
     <Content Include="Views\Sellers\SellerRegistration.cshtml" />
     <Content Include="Views\Admins\AdminDash.cshtml" />
     <Content Include="Views\Admins\SellerPaindingList.cshtml" />
@@ -268,6 +270,7 @@
     <Content Include="Views\Admins\SellerDetails.cshtml" />
     <Content Include="Views\Admins\AllRequestedList.cshtml" />
     <Content Include="Views\Shop\ShopCreate.cshtml" />
+    <Content Include="Views\Shop\RequestChangeShop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

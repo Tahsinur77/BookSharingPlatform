@@ -33,6 +33,7 @@ namespace BookShare.Models.Database
         public DbSet<Return> Returns { get; set; }
         public DbSet<SellerDetail> SellerDetails { get; set; }
         public DbSet<Sell> Sells { get; set; }
+        public DbSet<ShopChangeRequest> ShopChangeRequests { get; set; }
         public DbSet<Shop> Shops { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<User> Users { get; set; }

@@ -98,6 +98,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ShopChangeRequests">
+      <EntityTypeMapping TypeName="BookSharingModel.ShopChangeRequest">
+        <MappingFragment StoreEntitySet="ShopChangeRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
+          <ScalarProperty Name="ShopDocuments" ColumnName="ShopDocuments" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Shops">
       <EntityTypeMapping TypeName="BookSharingModel.Shop">
         <MappingFragment StoreEntitySet="Shops">

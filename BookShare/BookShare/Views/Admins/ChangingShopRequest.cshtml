@@ -1,0 +1,44 @@
+﻿@model List<BookShare.Models.Entities.ShopChangeRequestUsersModel>
+@{
+    ViewBag.Title = "ChangingShopRequest";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>ChangingShopRequest</h2>
+
+<table class="table">
+    <tr>
+        <th>Picture</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Shop Name</th>
+        <th>Shop Number</th>
+        <th>Shop Location</th>
+        <th>Shop Status</th>
+        <th>Documents</th>
+        <th>Action</th>
+
+    </tr>
+
+    @foreach(var list in Model)
+    {
+        <tr>
+            <td><img style="height:50px;width:50px;" src="~/Images/@list.User.Picture" /></td>
+            <td>@list.User.Name</td>
+            <td>@list.User.Email</td>
+            <td>@list.User.Phone</td>
+            <td>@list.Name</td>
+            <td>@list.ShopNumber</td>
+            <td>@list.Location</td>
+            <td>@list.Status</td>
+            <td>
+                <a class="btn btn-primary" href="/Admins/Download/@list.UserId">Download/View</a>
+            </td>
+            <td>
+                <a class="btn btn-success" href="">Approve</a>
+                <a class="btn btn-danger" href="">Deny</a>
+            </td>
+        </tr>
+    }
+</table>

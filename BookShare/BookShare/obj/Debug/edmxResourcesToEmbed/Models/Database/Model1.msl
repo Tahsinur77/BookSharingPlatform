@@ -107,6 +107,7 @@
           <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
           <ScalarProperty Name="ShopDocuments" ColumnName="ShopDocuments" />
           <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

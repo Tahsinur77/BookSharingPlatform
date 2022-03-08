@@ -104,6 +104,12 @@ namespace BookShare.Controllers
             var fileName = (from x in db.SellerDetails
                             where x.Id.Equals(id)
                             select x.ShopDocuments).FirstOrDefault();
+            if (fileName == null)
+            {
+                fileName = (from y in db.ShopChangeRequests
+                            where y.UserId.Equals(id)
+                            select y.ShopDocuments).FirstOrDefault();
+            }
             string FilePath = Server.MapPath("~/Images/"+fileName);
             WebClient User = new WebClient();
             Byte[] FileBuffer = User.DownloadData(FilePath);
@@ -201,6 +207,21 @@ namespace BookShare.Controllers
             var sellerDetailsModel = mapper.Map<SellerDetailsModel>(sellerDetails);
 
             return View(sellerDetailsModel);
+        }
+
+        [HttpGet]
+        public ActionResult ChangingShopRequest()
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var list = (from x in db.ShopChangeRequests
+                        where x.Status.Equals("painding")
+                        select x).ToList();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<ShopChangeRequest, ShopChangeRequestUsersModel>());
+            var mapper = new Mapper(config);
+            var listModel = mapper.Map<List<ShopChangeRequestUsersModel>>(list);
+                        
+            return View(listModel);
         }
 
         

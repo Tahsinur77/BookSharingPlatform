@@ -76,6 +76,7 @@ namespace BookShare.Controllers
                 shopChangeRequest.ShopNumber = shopChangeRequestModel.ShopNumber;
                 shopChangeRequest.ShopDocuments = ImageName;
                 shopChangeRequest.Location = shopChangeRequestModel.Location;
+                shopChangeRequest.Status = shopChangeRequestModel.Status;
 
                 BookSharingEntities db = new BookSharingEntities();
                 db.ShopChangeRequests.Add(shopChangeRequest);

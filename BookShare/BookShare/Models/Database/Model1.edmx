@@ -117,6 +117,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
           <Property Name="ShopNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ShopDocuments" Type="varchar" MaxLength="150" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Shops">
           <Key>
@@ -607,6 +608,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ShopDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_ShopChangeRequest_Users" FromRole="ShopChangeRequests" ToRole="Users" />
         </EntityType>
         <EntityType Name="Shop">
@@ -1096,6 +1098,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
                 <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
                 <ScalarProperty Name="ShopDocuments" ColumnName="ShopDocuments" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

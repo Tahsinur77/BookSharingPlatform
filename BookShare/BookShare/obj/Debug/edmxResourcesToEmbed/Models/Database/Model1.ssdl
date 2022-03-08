@@ -112,6 +112,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <Property Name="ShopNumber" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ShopDocuments" Type="varchar" MaxLength="150" Nullable="false" />
     <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Shops">
     <Key>

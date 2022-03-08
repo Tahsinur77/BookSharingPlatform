@@ -199,6 +199,7 @@
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsUserModel.cs" />
     <Compile Include="Models\Entities\ShopChangeRequestModel.cs" />
+    <Compile Include="Models\Entities\ShopChangeRequestUsersModel.cs" />
     <Compile Include="Models\Entities\ShopModel.cs" />
     <Compile Include="Models\Entities\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +272,7 @@
     <Content Include="Views\Admins\AllRequestedList.cshtml" />
     <Content Include="Views\Shop\ShopCreate.cshtml" />
     <Content Include="Views\Shop\RequestChangeShop.cshtml" />
+    <Content Include="Views\Admins\ChangingShopRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

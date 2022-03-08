@@ -20,6 +20,7 @@ namespace BookShare.Models.Database
         public string ShopNumber { get; set; }
         public string ShopDocuments { get; set; }
         public string Location { get; set; }
+        public string Status { get; set; }
     
         public virtual User User { get; set; }
     }

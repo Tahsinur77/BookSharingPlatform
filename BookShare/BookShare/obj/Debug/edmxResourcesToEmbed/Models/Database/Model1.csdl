@@ -124,6 +124,7 @@
     <Property Name="ShopNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ShopDocuments" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="User" Relationship="Self.FK_ShopChangeRequest_Users" FromRole="ShopChangeRequests" ToRole="Users" />
   </EntityType>
   <EntityType Name="Shop">

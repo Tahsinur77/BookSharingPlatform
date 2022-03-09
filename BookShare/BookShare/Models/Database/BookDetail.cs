@@ -18,6 +18,7 @@ namespace BookShare.Models.Database
         public int SellerId { get; set; }
         public int BookId { get; set; }
         public int ShopId { get; set; }
+        public string BookQuantity { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual Shop Shop { get; set; }

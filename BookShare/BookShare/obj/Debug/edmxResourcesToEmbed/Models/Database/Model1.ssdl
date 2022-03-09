@@ -18,6 +18,7 @@
     <Property Name="SellerId" Type="int" Nullable="false" />
     <Property Name="BookId" Type="int" Nullable="false" />
     <Property Name="ShopId" Type="int" Nullable="false" />
+    <Property Name="BookQuantity" Type="varchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <EntityType Name="Books">
     <Key>

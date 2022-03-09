@@ -133,6 +133,7 @@
     <Compile Include="Auth\SellerOrAdminValidation.cs" />
     <Compile Include="Auth\UserValidation.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Models\Database\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entities\AuthorModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsUserModel.cs" />
     <Compile Include="Models\Entities\ShopChangeRequestModel.cs" />
@@ -273,6 +275,8 @@
     <Content Include="Views\Shop\ShopCreate.cshtml" />
     <Content Include="Views\Shop\RequestChangeShop.cshtml" />
     <Content Include="Views\Admins\ChangingShopRequest.cshtml" />
+    <Content Include="Views\Author\CreateAuthor.cshtml" />
+    <Content Include="Views\Author\Authorlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

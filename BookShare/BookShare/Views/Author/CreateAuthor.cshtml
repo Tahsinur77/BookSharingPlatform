@@ -1,0 +1,16 @@
+﻿@model BookShare.Models.Entities.AuthorModel
+@{
+    ViewBag.Title = "CreateAuthor";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>CreateAuthor</h2>
+
+
+<form action="/Author/CreateAuthor" method="post" enctype="multipart/form-data">
+    <input type="text" name="Name" placeholder="Author Name" value="@Model.Name" />
+    <input type="text" name="Email" placeholder="Author Email" value="@Model.Email"/>
+    <input type="text" name="Details" placeholder="Author Details" value="@Model.Details"/>
+    <input type="file" name="Picture" placeholder="Picture"/>
+    <input class="btn btn-primary" type="submit" value="Add" />
+</form>

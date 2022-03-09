@@ -19,6 +19,7 @@
     <Property Name="SellerId" Type="Int32" Nullable="false" />
     <Property Name="BookId" Type="Int32" Nullable="false" />
     <Property Name="ShopId" Type="Int32" Nullable="false" />
+    <Property Name="BookQuantity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Book" Relationship="Self.FK_BookDetails_Books" FromRole="BookDetails" ToRole="Books" />
     <NavigationProperty Name="Shop" Relationship="Self.FK_BookDetails_Shops" FromRole="BookDetails" ToRole="Shops" />
     <NavigationProperty Name="User" Relationship="Self.FK_BookDetails_Users" FromRole="BookDetails" ToRole="Users" />

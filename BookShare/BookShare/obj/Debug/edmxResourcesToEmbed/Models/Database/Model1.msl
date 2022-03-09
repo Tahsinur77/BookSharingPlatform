@@ -19,6 +19,7 @@
           <ScalarProperty Name="SellerId" ColumnName="SellerId" />
           <ScalarProperty Name="BookId" ColumnName="BookId" />
           <ScalarProperty Name="ShopId" ColumnName="ShopId" />
+          <ScalarProperty Name="BookQuantity" ColumnName="BookQuantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

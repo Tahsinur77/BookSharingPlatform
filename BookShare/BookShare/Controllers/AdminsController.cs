@@ -224,6 +224,76 @@ namespace BookShare.Controllers
             return View(listModel);
         }
 
-        
+        public ActionResult ShopChangeApprove(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var oldShopChangeReq = (from x in db.ShopChangeRequests
+                                    where x.UserId.Equals(id)
+                                    select x).FirstOrDefault();
+            var newShopChangeReq = new ShopChangeRequest();
+            newShopChangeReq.Id = oldShopChangeReq.Id;
+            newShopChangeReq.UserId = oldShopChangeReq.UserId;
+            newShopChangeReq.ShopNumber = oldShopChangeReq.ShopNumber;
+            newShopChangeReq.ShopDocuments = oldShopChangeReq.ShopDocuments;
+            newShopChangeReq.Name = oldShopChangeReq.Name;
+            newShopChangeReq.Location = oldShopChangeReq.Location;
+            newShopChangeReq.Status = "Approved";
+            
+            
+
+
+            var oldSellerDetails = (from y in db.SellerDetails
+                                    where y.SellerId.Equals(id) && 
+                                    y.Status.Equals("Approved")
+                                    select y).FirstOrDefault();
+            var newSellerDetails = new SellerDetail();
+            newSellerDetails.Id = oldSellerDetails.Id;
+            newSellerDetails.SellerId = oldSellerDetails.SellerId;
+            newSellerDetails.Nid = oldSellerDetails.Nid;
+            newSellerDetails.ShopDocuments = oldShopChangeReq.ShopDocuments;
+            newSellerDetails.ShopNumber = oldShopChangeReq.ShopNumber;
+            newSellerDetails.Status = oldSellerDetails.Status;
+
+            var oldShop = (from z in db.Shops
+                           where z.UserId.Equals(id)
+                           select z).FirstOrDefault();
+            var newShop = new Shop();
+            newShop.Id = oldShop.Id;
+            newShop.Name = oldShopChangeReq.Name;
+            newShop.Location = oldShopChangeReq.Location;
+            newShop.UserId = oldShop.UserId;
+            newShop.ShopNumber = oldShopChangeReq.ShopNumber;
+
+
+            db.Entry(oldShopChangeReq).CurrentValues.SetValues(newShopChangeReq);
+            db.Entry(oldSellerDetails).CurrentValues.SetValues(newSellerDetails);
+            db.Entry(oldShop).CurrentValues.SetValues(newShop);
+            db.SaveChanges();
+
+
+            return RedirectToAction("AdminDash");
+        }
+
+        public ActionResult ShopChangeDeny(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var oldShopChangeReq = (from x in db.ShopChangeRequests
+                                    where x.UserId.Equals(id)
+                                    select x).FirstOrDefault();
+            var newShopChangeReq = new ShopChangeRequest();
+            newShopChangeReq.Id = oldShopChangeReq.Id;
+            newShopChangeReq.UserId = oldShopChangeReq.UserId;
+            newShopChangeReq.ShopNumber = oldShopChangeReq.ShopNumber;
+            newShopChangeReq.ShopDocuments = oldShopChangeReq.ShopDocuments;
+            newShopChangeReq.Name = oldShopChangeReq.Name;
+            newShopChangeReq.Location = oldShopChangeReq.Location;
+            newShopChangeReq.Status = "Deny";
+            db.Entry(oldShopChangeReq).CurrentValues.SetValues(newShopChangeReq);
+            db.SaveChanges();
+            return RedirectToAction("AdminDash");
+        }
+
+
+
     }
 }

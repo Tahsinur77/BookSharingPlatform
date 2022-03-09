@@ -15,6 +15,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Details</th>
+        <th>Action</th>
     </tr>
     @foreach(var list in Model)
     {
@@ -23,6 +24,10 @@
             <td>@list.Name</td>
             <td>@list.Email</td>
             <td>@list.Details</td>
+            <td>
+                <a class="btn btn-primary" href="/Book/BookCreate/@list.Id">Add Book</a>
+        
+            </td>
 
         </tr>
     }

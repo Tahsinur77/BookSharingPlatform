@@ -1,0 +1,58 @@
+﻿@model List<BookShare.Models.Entities.BookAuthorModel>
+@{
+    ViewBag.Title = "PendingBookList";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>Pending Book List</h2>
+
+<table class="table">
+
+    <tr>
+        <th>Cover</th>
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>Author Mail</th>
+        <th>Edition</th>
+        <th>Publisher</th>
+        <th>Category</th>
+        <th>Country</th>
+        <th>Language</th>
+        <th>Page Number</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var list in Model)
+    {
+        <tr>
+            <td><img style="height:50px; width: 50px;" src="~/Images/@list.Picture" /></td>
+            <td>@list.Name</td>
+            <td>@list.Author.Name</td>
+            <td>@list.Author.Email</td>
+            <td>@list.Edition</td>
+            <td>@list.Publisher</td>
+            <td>@list.Category</td>
+            <td>@list.Country</td>
+            <td>@list.Language</td>
+            <td>@list.NumberOfPages</td>
+            <td>@list.ISBN</td>
+            <td>@list.Price</td>
+            <td>@list.Status</td>
+
+            <td>
+                <a class="btn btn-success" href="">Aprrove</a>
+                <a class="btn btn-danger" href="">Deny</a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@if (Model.Count == 0)
+{
+    <h3>No Pending Books</h3>
+}

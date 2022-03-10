@@ -196,7 +196,43 @@ namespace BookShare.Controllers
 
         public ActionResult ShopBookList()
         {
-            return View();
+            string u = Session["user"].ToString();
+            var user = new JavaScriptSerializer().Deserialize<UserModel>(u);
+
+            BookSharingEntities db = new BookSharingEntities();
+            var shopBooks = (from x in db.BookDetails
+                            where x.SellerId.Equals(user.Id)
+                            select x).ToList();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Book, BookAuthorModel>());
+            var mapper = new Mapper(config);
+            var config1 = new MapperConfiguration(cfg => cfg.CreateMap<Shop, ShopModel>());
+            var mapper1 = new Mapper(config1);
+            var config2 = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
+            var mapper2 = new Mapper(config2);
+
+            List<BookDetailBookShopUserModel> onkGulass = new List<BookDetailBookShopUserModel>();
+
+            foreach (var shopBook in shopBooks) {
+
+                var bookModel = mapper.Map<BookAuthorModel>(shopBook.Book);
+                var shopModel = mapper1.Map<ShopModel>(shopBook.Shop);
+                var userModel = mapper2.Map<UserModel>(shopBook.User);
+
+                BookDetailBookShopUserModel onkGula = new BookDetailBookShopUserModel();
+                onkGula.SellerId = user.Id;
+                onkGula.ShopId = shopBook.ShopId;
+                onkGula.BookId = shopBook.BookId;
+                onkGula.BookQuantity = shopBook.BookQuantity;
+                onkGula.Book = bookModel;
+                onkGula.Shop = shopModel;
+                onkGula.User = userModel;
+
+                onkGulass.Add(onkGula);
+            }
+
+
+
+            return View(onkGulass);
         }
     }
 }

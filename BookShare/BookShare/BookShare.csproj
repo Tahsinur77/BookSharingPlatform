@@ -198,6 +198,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\AuthorModel.cs" />
+    <Compile Include="Models\Entities\BookDetailBookShopUserModel.cs" />
     <Compile Include="Models\Entities\BookDetailModel.cs" />
     <Compile Include="Models\Entities\BookModel.cs" />
     <Compile Include="Models\Entities\BookAuthorModel.cs" />

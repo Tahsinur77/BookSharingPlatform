@@ -191,10 +191,14 @@
     <Compile Include="Models\Database\ShopChangeRequest.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Database\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Database\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Entities\AuthorModel.cs" />
+    <Compile Include="Models\Entities\BookDetailModel.cs" />
     <Compile Include="Models\Entities\BookModel.cs" />
     <Compile Include="Models\Entities\BookAuthorModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
@@ -278,6 +282,11 @@
     <Content Include="Views\Author\Authorlist.cshtml" />
     <Content Include="Views\Book\BookCreate.cshtml" />
     <Content Include="Views\Book\PendingBookList.cshtml" />
+    <Content Include="Views\Admins\AuthorlistForAdmin.cshtml" />
+    <Content Include="Views\Book\AllBookList.cshtml" />
+    <Content Include="Views\Book\ApprovedBookList.cshtml" />
+    <Content Include="Views\Book\DenyBookList.cshtml" />
+    <Content Include="Views\Book\ShopBookList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

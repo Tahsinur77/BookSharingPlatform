@@ -1,10 +1,15 @@
 ﻿@model List<BookShare.Models.Entities.BookAuthorModel>
 @{
-    ViewBag.Title = "PendingBookList";
+    ViewBag.Title = "AllBookList";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<h2>Pending Book List</h2>
+<a class="btn btn-success" href="/Book/ApprovedBookList">Approve Book List</a>
+<a class="btn btn-success" href="/Book/DenyBookList">Deny Book List</a>
+
+
+<h2>All Books List</h2>
+
 
 <table class="table">
 
@@ -22,7 +27,7 @@
         <th>ISBN</th>
         <th>Price</th>
         <th>Status</th>
-        <th>Action</th>
+       
     </tr>
 
     @foreach (var list in Model)
@@ -42,10 +47,7 @@
             <td>@list.Price</td>
             <td>@list.Status</td>
 
-            <td>
-                <a class="btn btn-success" href="/Book/ApproveBook/@list.Id">Aprrove</a>
-                <a class="btn btn-danger" href="/Book/DenyBook/@list.Id">Deny</a>
-            </td>
+            
 
         </tr>
     }

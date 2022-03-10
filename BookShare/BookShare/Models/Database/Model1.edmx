@@ -130,6 +130,16 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
           <Property Name="ShopNumber" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
@@ -382,6 +392,7 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
           <EntitySet Name="Sells" EntityType="Self.Sells" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopChangeRequests" EntityType="Self.ShopChangeRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Discounts" EntityType="Self.Discounts" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -615,6 +626,16 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Shops" FromRole="Shops" ToRole="OrderDetails" />
           <NavigationProperty Name="Returns" Relationship="Self.FK_Returns_Shops" FromRole="Shops" ToRole="Returns" />
           <NavigationProperty Name="User" Relationship="Self.FK_Shop_Users" FromRole="Shops" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -887,6 +908,7 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
           <EntitySet Name="Sells" EntityType="Self.Sell" />
           <EntitySet Name="ShopChangeRequests" EntityType="Self.ShopChangeRequest" />
           <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Discounts" EntityType="Self.Discount" />
           <AssociationSet Name="FK_Books_Authors" Association="Self.FK_Books_Authors">
@@ -1091,6 +1113,17 @@ FROM [dbo].[Discounts] AS [Discounts]</DefiningQuery>
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BookSharingModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

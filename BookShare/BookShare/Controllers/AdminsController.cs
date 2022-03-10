@@ -294,6 +294,33 @@ namespace BookShare.Controllers
         }
 
 
+        public ActionResult AuthorlistForAdmin()
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var list = db.Authors.ToList();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorModel>());
+            var mapper = new Mapper(config);
+            var listModel = mapper.Map<List<AuthorModel>>(list);
+
+            return View(listModel);
+        }
+
+
+        public ActionResult AuthorDelete(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var author = (from x in db.Authors
+                          where x.Id.Equals(id)
+                          select x).FirstOrDefault();
+            db.Authors.Remove(author);
+            db.SaveChanges();
+            return RedirectToAction("AuthorlistForAdmin");
+        }
+
+    
+
+
 
     }
 }

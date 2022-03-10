@@ -2,9 +2,9 @@
 	* View Profile(Navbar)
 		* View Shop Details
 		* Nijer Details
-	* Server Book List(Navbar)
-	* Shop Book List(Navbar)
 
 	**Author Edit/Delete
 
-** 
+** Admin Dash
+	* Author List
+		* Edit Submit Not Done

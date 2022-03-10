@@ -1,13 +1,11 @@
 ﻿@model List<BookShare.Models.Entities.AuthorModel>
 @{
-    ViewBag.Title = "Authorlist";
+    ViewBag.Title = "AuthorlistForAdmin";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
+<h2>AuthorlistForAdmin</h2>
 
-<a class="btn btn-primary" href="/Author/CreateAuthor">New Author</a>
-
-<h2>Authorlist</h2>
 
 <table class="table">
     <tr>
@@ -17,7 +15,7 @@
         <th>Details</th>
         <th>Action</th>
     </tr>
-    @foreach(var list in Model)
+    @foreach (var list in Model)
     {
         <tr>
             <td><img style="height:50px;width:50px" src="~/Images/@list.Picture" /></td>
@@ -25,8 +23,8 @@
             <td>@list.Email</td>
             <td>@list.Details</td>
             <td>
-                <a class="btn btn-primary" href="/Book/BookCreate/@list.Id">Request to Add Book</a>
-        
+                <a class="btn btn-success" href="/Admins/AuthorEdit/@list.Id">Edit</a>
+                <a class="btn btn-danger" href="/Admins/AuthorDelete/@list.Id">Delete</a>
             </td>
 
         </tr>

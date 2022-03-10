@@ -1,0 +1,47 @@
+﻿@model List<BookShare.Models.Entities.BookDetailBookShopUserModel>
+@{
+    ViewBag.Title = "ShopBookList";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>ShopBookList</h2>
+
+<table class="table">
+    <tr>
+        <th>Book Picture</th>
+        <th>Author Name</th>
+        <th>Book Name</th>
+        <th>Seller Name</th>
+        <th>Price</th>
+        <th>Genre</th>
+        <th>Edition</th>
+        <th>Language</th>
+        <th>Country</th>
+        <th>Publisher</th>
+        <th>Number of Pages</th>
+        <th>Quantity</th>
+        <th>Shop Number</th>
+        <th>Shop Name</th>
+    </tr>
+
+    @foreach(var list in Model)
+    {
+        <tr>
+            <td><img style="height:100px;width:100px;" src="~/Images/@list.Book.Picture" /></td>
+            <td>@list.Book.Author.Name</td>
+            <td>@list.Book.Name</td>
+            <td>@list.User.Name</td>
+            <td>@list.Book.Price</td>
+            <td>@list.Book.Category</td>
+            <td>@list.Book.Edition</td>
+            <td>@list.Book.Language</td>
+            <td>@list.Book.Country</td>
+            <td>@list.Book.Publisher</td>
+            <td>@list.Book.NumberOfPages</td>
+            <td>@list.BookQuantity</td>
+            <td>@list.Shop.ShopNumber</td>
+            <td>@list.Shop.Name</td>
+
+        </tr>
+    }
+</table>

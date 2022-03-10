@@ -1,0 +1,84 @@
+﻿@model List<BookShare.Models.Entities.BookAuthorModel>
+@{
+    ViewBag.Title = "ApprovedBookList";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>ApprovedBookList</h2>
+
+
+<table class="table">
+
+    <tr>
+        <th>Cover</th>
+        <th>Book Name</th>
+        <th>Author Name</th>
+        <th>Author Mail</th>
+        <th>Edition</th>
+        <th>Publisher</th>
+        <th>Category</th>
+        <th>Country</th>
+        <th>Language</th>
+        <th>Page Number</th>
+        <th>Price</th>
+
+        @if (ViewBag.UserRole == "Admin")
+        {
+            <th>ISBN</th>
+            <th>Status</th>
+        }
+        else
+        {
+            <th>Add to shop</th>
+        }
+
+    </tr>
+
+    @foreach (var list in Model)
+    {
+        <tr>
+            <td><img style="height:50px; width: 50px;" src="~/Images/@list.Picture" /></td>
+            <td>@list.Name</td>
+            <td>@list.Author.Name</td>
+            <td>@list.Author.Email</td>
+            <td>@list.Edition</td>
+            <td>@list.Publisher</td>
+            <td>@list.Category</td>
+            <td>@list.Country</td>
+            <td>@list.Language</td>
+            <td>@list.NumberOfPages</td>
+            <td>@list.Price</td>
+            @if (ViewBag.UserRole == "Admin")
+            {
+                <td>@list.ISBN</td>
+                <td>@list.Status</td>
+            }
+            else
+            {
+                <td>
+                    <form action="/Book/BookAddToShop" method="post">
+                        <input type="hidden" name="SellerId" value="@Session["userId"]" />
+                        <input type="hidden" name="BookId" value="@list.Id" />
+                        <input type="hidden" name="ShopId" value="@ViewBag.ShopId" />
+                        <input type="text" name="BookQuantity" placeholder="Book Quantity" />
+                        @if (TempData["QuantityError"] != null) 
+                        {
+                            <span class="label-danger">@TempData["QuantityError"]</span>
+                        }
+                        <input type="submit" value="Add" />
+                    </form>
+                </td>
+            }
+
+
+
+
+        </tr>
+    }
+
+</table>
+
+@if (Model.Count == 0)
+{
+    <h3>No Pending Books</h3>
+}

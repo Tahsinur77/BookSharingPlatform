@@ -8,17 +8,22 @@
 
 <form action="/Users/Edit" method="post" enctype="multipart/form-data">
     <input type="hidden" name="Id" value="@Model.Id" />
-    <input type="text" name="Name" value="@Model.Name" placeholder="Name" />
+    Name: <input type="text" name="Name" value="@Model.Name" placeholder="Name" />
     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-    <input type="text" name="Email" value="@Model.Email" placeholder="Email" />
+    <br /><br />
+    Email: <input type="text" name="Email" value="@Model.Email" placeholder="Email" />
     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-    <input type="text" name="Phone" value="@Model.Phone" placeholder="Phone" />
+    <br /><br />
+    Phone: <input type="text" name="Phone" value="@Model.Phone" placeholder="Phone" />
     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-    <input type="text" name="Address" value="@Model.Address" placeholder="Address" />
+    <br /><br />
+    Address: <input type="text" name="Address" value="@Model.Address" placeholder="Address" />
     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-    <img style="height:200px;width:200px" src="~/Images/@Model.Picture" />
-    <input type="file" name="Picture" value="@Model.Picture" />
+    <br /><br />
+    Picture: <img style="height:150px;width:150px" src="~/Images/@Model.Picture" />
+    @*<input type="file" name="Picture" value="@Model.Picture" />*@
     <input type="hidden" name="Role" value="User" />
-    <input type="password" name="Password" value="@Model.Password" placeholder="Password"/>
-    <input type="submit" value="Add" />
+    <br /><br />
+    Password: <input type="password" name="Password" value="@Model.Password" placeholder="Password" />
+    @*<input type="submit" value="Add" />*@
 </form>

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<BookShare.Models.Entities.BookDetailBookShopUserModel>
 @{
     ViewBag.Title = "UserDash";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -10,7 +10,8 @@
 
 @if (TempData["error"] != null)
 {
-    <span class="label-danger">@TempData["error"]</span><br />
+    <span class="label-danger">@TempData["error"]</span>
+    <br />
 }
 
 <a class="btn btn-success" href="/Sellers/SellerRegistration">Registration as seller</a>
@@ -20,3 +21,20 @@
 <br />
 
 <a class="btn btn-success" href="/Users/Edit/@Session["userId"]">Update</a>
+
+<br />
+@foreach (var list in Model)
+{
+    <a href="/Users/BookDetails/@list.Book.Id">
+        <div class="card" style="width: 18rem;">
+            <img src="~/Images/@list.Book.Picture" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h3 class="card-title">@list.Book.Name</h3>
+                <h5 class="card-text">@list.Book.Author.Name (@list.Book.Edition Edition)</h5>
+                <h4>@list.Book.Price</h4>
+
+            </div>
+        </div>
+    </a>
+    <a href="" class="btn btn-success">Add to Cart</a>
+}

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AuthorEdit";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>AuthorEdit</h2>
+
+<form action="/Author/AuthorEdit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="Id" value="@Model.Id" />
+    Name: <input type="text" name="Name" placeholder="Author Name" value="@Model.Name" />
+    <br /><br />
+    Email: <input type="text" name="Email" placeholder="Author Email" value="@Model.Email" />
+    <br /><br />
+    Details: <input type="text" name="Details" placeholder="Author Details" size="100" value="@Model.Details" />
+    <br /><br />
+    Picture: <img style="height:100px;width:100px" src="~/Images/@Model.Picture" />
+    @*<input type="file" name="Picture" value="@Model.Picture" />*@
+
+</form>
+

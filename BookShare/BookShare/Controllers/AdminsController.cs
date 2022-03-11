@@ -318,9 +318,56 @@ namespace BookShare.Controllers
             return RedirectToAction("AuthorlistForAdmin");
         }
 
-    
+
+        [HttpGet]
+        public ActionResult AuthorEdit(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var author = (from a in db.Authors
+                        where a.Id.Equals(id)
+                        select a).FirstOrDefault();
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Author, AuthorModel>()); ;
+            var mapper = new Mapper(config);
+            var authorModel = mapper.Map<AuthorModel>(author);
+
+            return View(authorModel);
+        }
+
+        [HttpPost]
+
+        public ActionResult AuthorEdit(AuthorModel author, HttpPostedFileBase Picture)
+        {
+
+            if (ModelState.IsValid)
+            {
+                BookSharingEntities db = new BookSharingEntities();
+                var pic = (from b in db.Authors
+                           where b.Id.Equals(author.Id)
+                           select b).FirstOrDefault();
+                string ImageName = pic.Picture;
+                if (Picture != null)
+                {
+                    ImageName = System.IO.Path.GetFileName(Picture.FileName);
+                    string physicalPath = Server.MapPath("~/Images/" + ImageName);
+                    Picture.SaveAs(physicalPath);
+                }
+
+                Author a = new Author();
+                a.Id = author.Id;
+                a.Name = author.Name;
+                a.Email = author.Email;
+                
+                a.Picture = ImageName;
+                a.Details = author.Details;
 
 
+                db.Entry(pic).CurrentValues.SetValues(a);
+                db.SaveChanges();
+
+                return RedirectToAction("AuthorList");
+            }
+            return View(author);
+        }
 
     }
 }

@@ -194,6 +194,10 @@ namespace BookShare.Controllers
             return RedirectToAction("ApprovedBookList");
         }
 
+
+
+
+
         public ActionResult ShopBookList()
         {
             string u = Session["user"].ToString();

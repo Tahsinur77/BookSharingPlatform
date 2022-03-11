@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Auth\AdminValidation.cs" />
+    <Compile Include="Auth\BookList.cs" />
     <Compile Include="Auth\SellerOrAdminValidation.cs" />
     <Compile Include="Auth\UserValidation.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
@@ -288,6 +289,7 @@
     <Content Include="Views\Book\ApprovedBookList.cshtml" />
     <Content Include="Views\Book\DenyBookList.cshtml" />
     <Content Include="Views\Book\ShopBookList.cshtml" />
+    <Content Include="Views\Users\BookDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

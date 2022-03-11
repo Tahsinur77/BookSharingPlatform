@@ -143,7 +143,16 @@ namespace BookShare.Controllers
         [UserValidation]
         public ActionResult UserDash()
         {
-            return View();
+            BookList b = new BookList();
+            var bookList = b.shopBookList();
+            return View(bookList);
+        }
+        [HttpGet]
+        public ActionResult BookDetails(int id)
+        {
+            BookList b = new BookList();
+            var bookDetails = b.bookDetails(id);
+            return View(bookDetails);
         }
 
         

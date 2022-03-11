@@ -1,8 +1,4 @@
 ** Seller Dash
-	* View Profile(Navbar)
-		* View Shop Details
-		* Nijer Details
-
 	* Book Order List(From Users)
 
 ** Admin Dash
@@ -10,6 +6,8 @@
 
 ** UserDash
 	* Add To Cart -> SellerDash(OrderList)
+
+	* Search Book
 
 
 

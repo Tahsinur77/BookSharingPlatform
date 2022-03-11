@@ -3,8 +3,17 @@
 		* View Shop Details
 		* Nijer Details
 
-	**Author Edit/Delete
+	* Book Order List(From Users)
 
 ** Admin Dash
-	* Author List
-		* Edit Submit Not Done
+	
+
+** UserDash
+	* Add To Cart -> SellerDash(OrderList)
+
+
+
+
+Extra features:
+	* Chat Box
+	* Seller Notification Box

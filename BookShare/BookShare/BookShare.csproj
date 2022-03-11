@@ -192,9 +192,6 @@
     <Compile Include="Models\Database\ShopChangeRequest.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Database\sysdiagram.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Database\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

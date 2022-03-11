@@ -6,4 +6,31 @@
 
 <h2>BookDetails</h2>
 
-@Model.Book.Name
+
+Cover: <br />
+<img style="height: 250px; width: 150px" src="~/Images/@Model.Book.Picture" />
+<br />
+Name: @Model.Book.Name
+<br />
+Author Name: @Model.Book.Author.Name
+<br />
+Author Mail: @Model.Book.Author.Email
+<br />
+Edition: @Model.Book.Edition
+<br />
+Publisher: @Model.Book.Publisher
+<br />
+Category: @Model.Book.Category
+<br />
+Country: @Model.Book.Country
+<br />
+Language: @Model.Book.Language
+<br />
+Page Number: @Model.Book.NumberOfPages
+<br />
+ISBN: @Model.Book.ISBN
+<br />
+Price: @Model.Book.Price
+<br />
+Status: @Model.Book.Status
+<br />

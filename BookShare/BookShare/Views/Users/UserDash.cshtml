@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
+<head>
+    <link href="@Url.Content("~/ExternalCSS/Card.css")" rel="stylesheet" type="text/css" />
+</head>
+
 <h2>UserDash</h2>
 
 <p>Welcome to User Dashboard</p>
@@ -34,9 +38,8 @@
             <h5 class="card-text">@list.Book.Author.Name (@list.Book.Edition Edition)</h5>
             <h4>@list.Book.Price</h4>
 
+            </div>
         </div>
-    </div>
-
-</a>
+    </a>
     <a href="" class="btn btn-success">Add to Cart</a>
 }

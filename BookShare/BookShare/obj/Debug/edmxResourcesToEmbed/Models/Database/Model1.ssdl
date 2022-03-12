@@ -7,7 +7,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Picture" Type="varchar" MaxLength="250" Nullable="false" />
-    <Property Name="Details" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="Details" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="BookDetails">
@@ -124,16 +124,6 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="ShopNumber" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Location" Type="varchar" MaxLength="150" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -387,7 +377,6 @@ warning 6002: The table/view 'BookSharing.dbo.Discounts' does not have a primary
     <EntitySet Name="Sells" EntityType="Self.Sells" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ShopChangeRequests" EntityType="Self.ShopChangeRequests" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Discounts" EntityType="Self.Discounts" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 

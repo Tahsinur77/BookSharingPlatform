@@ -147,6 +147,7 @@ namespace BookShare.Controllers
             var bookList = b.shopBookList();
             return View(bookList);
         }
+
         [HttpGet]
         public ActionResult BookDetails(int id)
         {
@@ -154,9 +155,6 @@ namespace BookShare.Controllers
             var bookDetails = b.bookDetails(id);
             return View(bookDetails);
         }
-
-        
-        
 
     }
 }

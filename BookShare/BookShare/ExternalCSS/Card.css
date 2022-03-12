@@ -1,14 +1,14 @@
-﻿/**{
+﻿{
     box-sizing: border-box;
-}*/
+}
 
-/*body {
+body {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.container{
+/*.container{
     display: flex;
     flex-wrap: wrap;
 }
@@ -61,7 +61,7 @@
     grid-row: 1 / span 2;
 }
 
-.wrapper {
+/*.wrapper {
     display: grid;
     grid-template-columns: 300px 300px 300px 300px;
-}
+}*/

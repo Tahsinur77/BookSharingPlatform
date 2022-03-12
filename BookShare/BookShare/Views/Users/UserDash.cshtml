@@ -22,10 +22,12 @@
 
 <a class="btn btn-danger" href="/Login/Logout">Log Out</a>
 
-<br />
+<br /><br />
 
 <a class="btn btn-success" href="/Users/Edit/@Session["userId"]">Update</a>
+<a class="btn btn-primary" href="/Users/AddCart">Cart</a>
 
+<br />
 <br />
 @foreach (var list in Model)
 {
@@ -41,5 +43,5 @@
             </div>
         </div>
     </a>
-    <a href="" class="btn btn-success">Add to Cart</a>
+    <a href="/Users/AddingProcess/@list.BookId" class="btn btn-success">Add to Cart</a>
 }

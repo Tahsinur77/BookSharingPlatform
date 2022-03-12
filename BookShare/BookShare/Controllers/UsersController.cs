@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using BookShare.Auth;
+using System.Web.Script.Serialization;
 
 namespace BookShare.Controllers
 {
@@ -154,6 +155,51 @@ namespace BookShare.Controllers
             BookList b = new BookList();
             var bookDetails = b.bookDetails(id);
             return View(bookDetails);
+        }
+
+        [UserValidation]
+        public ActionResult AddingProcess(int id)
+        {
+            
+            if (Session["cart"] == null)
+            {
+                List<int> bookIds = new List<int>();
+                bookIds.Add(id);
+                var jsonBookIds = new JavaScriptSerializer().Serialize(bookIds);
+                Session["cart"] = jsonBookIds;
+                return RedirectToAction("AddCart");
+            }
+            else
+            {
+                var jsonBookIds = Session["cart"].ToString();
+                List<int> bookIds = new JavaScriptSerializer().Deserialize<List<int>>(jsonBookIds);
+                bookIds.Add(id);
+                var newJsonBookIds = new JavaScriptSerializer().Serialize(bookIds);
+                Session["cart"] = newJsonBookIds;
+                return RedirectToAction("AddCart");
+            }
+        }
+
+        
+        [UserValidation]
+        public ActionResult AddCart()
+        {
+            if (Session["cart"] != null)
+            {
+                var x = Session["cart"].ToString();
+                List<int> bookIds = new JavaScriptSerializer().Deserialize<List<int>>(x);
+
+                List<BookDetailBookShopUserModel> books = new List<BookDetailBookShopUserModel>();
+                foreach(int id in bookIds)
+                {
+                    BookList b = new BookList();
+                    var bookDetails = b.bookDetails(id);
+                    bookDetails.BookQuantity = "1";
+                    books.Add(bookDetails);
+                }
+                return View(books);
+            }
+            return View(new List<BookDetailBookShopUserModel>());
         }
 
     }

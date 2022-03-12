@@ -138,6 +138,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -288,10 +289,12 @@
     <Content Include="Views\Book\DenyBookList.cshtml" />
     <Content Include="Views\Book\ShopBookList.cshtml" />
     <Content Include="Views\Users\BookDetails.cshtml" />
+    <Content Include="Views\Users\AddCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

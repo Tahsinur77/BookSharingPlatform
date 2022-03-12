@@ -6,19 +6,77 @@
 
 <h2>OrderHistoryOfUser</h2>
 
+<!--<table class="table">
+    <tr>
+        <th>Cover</th>-->
+        @*<th>Author Name</th>*@
+        <!--<th>Book Name</th>
+        <th>Seller Name</th>
+        <th>Price</th>
+        <th>Genre</th>
+        <th>Edition</th>
+        <th>Language</th>
+        <th>Country</th>
+        <th>Publisher</th>
+        <th>Page</th>
+
+        <th>Shop Number</th>
+        <th>Shop Name</th>
+
+        <th>Quantity</th>
+    </tr>
+
+</table>-->
+
 @foreach (var orders in Model)
 {
-    @orders.Id;
-    @orders.UserId;
+    <input type="hidden" value="@orders.Id;" />
+
+    <input type="hidden" value="@orders.UserId;" />
+
+
+    
     <table class="table">
         <tr>
-            <th></th>
+            <th>Cover</th>
+            @*<th>Author Name</th>*@
+            <th>Book Name</th>
+            <th>Seller Name</th>
+            <th>Price</th>
+            <th>Genre</th>
+            <th>Edition</th>
+            <th>Language</th>
+            <th>Country</th>
+            <th>Publisher</th>
+            <th>Page</th>
+
+            <th>Shop Number</th>
+            <th>Shop Name</th>
+
+            <th>Quantity</th>
         </tr>
-        @foreach(var od in orders.orderDetails)
+        @foreach (var od in orders.orderDetails)
         {
             <tr>
+                <td><img style="height: 100px; width: 100px" src="~/Images/@od.Book.Picture" /></td>
+                @*<td>@od.Book.AuthorId</td>*@
                 <td>@od.Book.Name</td>
+                <td>@od.User.Name</td>
+                <td>@od.Book.Price</td>
+                <td>@od.Book.Category</td>
+                <td>@od.Book.Edition</td>
+
+                <td>@od.Book.Language</td>
+                <td>@od.Book.Country</td>
+
+                <td>@od.Book.Publisher</td>
+                <td>@od.Book.NumberOfPages</td>
+
+                <td>@od.Shop.ShopNumber</td>
+                <td>@od.Shop.Name</td>
+                <td>@od.Quantity</td>
             </tr>
         }
     </table>
+    <br /> <br />
 }

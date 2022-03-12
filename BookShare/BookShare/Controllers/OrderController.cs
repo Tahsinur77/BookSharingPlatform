@@ -1,4 +1,5 @@
-﻿using BookShare.Auth;
+﻿using AutoMapper;
+using BookShare.Auth;
 using BookShare.Models.Database;
 using BookShare.Models.Entities;
 using System;
@@ -49,10 +50,53 @@ namespace BookShare.Controllers
 
             return RedirectToAction("UserDash", "Users");
         }
-
-        public ActionResult OrderHistory()
+        public ActionResult OrderHistoryOfUser()
         {
-            return View();
+            int id = System.Convert.ToInt32(Session["userId"].ToString());
+            BookSharingEntities db = new BookSharingEntities();
+            var orders = (from x in db.Orders
+                          where x.UserId.Equals(id)
+                          select x).ToList();
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Book,BookModel>());
+            var mapper = new Mapper(config);
+
+            var config1 = new MapperConfiguration(cfg => cfg.CreateMap<Shop, ShopModel>());
+            var mapper1 = new Mapper(config1);
+
+            var config2 = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
+            var mapper2 = new Mapper(config2);
+
+            List<OrderOrderDetailsModel> oods = new List<OrderOrderDetailsModel>();
+            foreach (var order in orders)
+            {
+                List<OrderDetailsModel> odrDetails = new List<OrderDetailsModel>();
+                foreach(var x in order.OrderDetails)
+                {
+                    OrderDetailsModel odm = new OrderDetailsModel();
+                    odm.Id = x.Id;
+                    odm.OrderId = x.OrderId;
+                    odm.BookId = x.BookId;
+                    odm.SellerId = x.SellerId;
+                    odm.Quantity = x.Quantity;
+                    odm.price = x.price;
+                    odm.ShopId = x.ShopId;
+                    odm.Book = mapper.Map<BookModel>(x.Book);
+                    odm.Shop = mapper1.Map<ShopModel>(x.Shop);
+                    odm.User = mapper2.Map<UserModel>(x.User);
+                    odrDetails.Add(odm);
+                }
+                OrderOrderDetailsModel ood = new OrderOrderDetailsModel();
+                ood.Id = order.Id;
+                ood.UserId = order.UserId;
+                ood.Status = order.Status;
+                ood.orderDetails = odrDetails;
+
+                oods.Add(ood);
+            }
+            
+
+            return View(oods);
         }
     }
 }

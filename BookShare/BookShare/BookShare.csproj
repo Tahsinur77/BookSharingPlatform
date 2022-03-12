@@ -201,6 +201,9 @@
     <Compile Include="Models\Entities\BookDetailModel.cs" />
     <Compile Include="Models\Entities\BookModel.cs" />
     <Compile Include="Models\Entities\BookAuthorModel.cs" />
+    <Compile Include="Models\Entities\OrderDetailsModel.cs" />
+    <Compile Include="Models\Entities\OrderModel.cs" />
+    <Compile Include="Models\Entities\OrderOrderDetailsModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsModel.cs" />
     <Compile Include="Models\Entities\SellerDetailsUserModel.cs" />
     <Compile Include="Models\Entities\ShopChangeRequestModel.cs" />
@@ -290,11 +293,11 @@
     <Content Include="Views\Book\ShopBookList.cshtml" />
     <Content Include="Views\Users\BookDetails.cshtml" />
     <Content Include="Views\Users\AddCart.cshtml" />
+    <Content Include="Views\Order\OrderHistoryOfUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Order\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>

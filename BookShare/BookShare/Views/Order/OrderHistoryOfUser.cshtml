@@ -1,0 +1,24 @@
+﻿@model List<BookShare.Models.Entities.OrderOrderDetailsModel>
+@{
+    ViewBag.Title = "OrderHistoryOfUser";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>OrderHistoryOfUser</h2>
+
+@foreach (var orders in Model)
+{
+    @orders.Id;
+    @orders.UserId;
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+        @foreach(var od in orders.orderDetails)
+        {
+            <tr>
+                <td>@od.Book.Name</td>
+            </tr>
+        }
+    </table>
+}

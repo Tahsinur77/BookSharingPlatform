@@ -202,5 +202,45 @@ namespace BookShare.Controllers
             return View(new List<BookDetailBookShopUserModel>());
         }
 
+        [HttpGet]
+        public ActionResult AllRequestedBookList(string searchBookName, string searchAuthor)
+        {
+            int check = 0;
+            if (searchBookName != "") check++;
+            if (searchAuthor != "") check++;
+         
+            BookSharingEntities db = new BookSharingEntities();
+            List<Book> list;
+
+            if ((searchBookName == null && searchAuthor == null ) || check == 0)
+            {
+                list = db.Books.ToList();
+            }
+            else if (check == 1)
+            {
+                list = (from x in db.Books
+                        where x.Author.Name.Contains(searchAuthor) ||
+                        x.Name.Equals(searchBookName) 
+                     
+                        select x).ToList();
+            }
+            else
+            {
+
+                list = (from x in db.Books
+                        where x.Author.Name.Contains(searchAuthor) &&
+                        x.Name.Equals(searchBookName)
+
+                        select x).ToList();
+
+            }
+            
+
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<SellerDetail, SellerDetailsUserModel>());
+            var mapper = new Mapper(config);
+            var sellerDetailsUserModel = mapper.Map<List<SellerDetailsUserModel>>(list);
+            return View(sellerDetailsUserModel);
+        }
+
     }
 }

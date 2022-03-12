@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "AllRequestedBookList";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>AllRequestedBookList</h2>
+
+<form action="/Users/AllRequestedBookList" method="get">
+    <input type="text" name="searchBookName" placeholder="Search by Book name" />
+    <input type="text" name="searchAuthor" placeholder="search by Author name" />
+    <input type="submit" value="search" />
+</form>
+
+
+@*<div id="myDIV">*@
+
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row mt-5">
+
+        @foreach (var list in Model)
+        {
+            @*<div class="item1">*@
+            @*<div class="colomn">*@
+
+
+            <div class="col">
+                <a href="/Users/BookDetails/@list.Book.Id">
+
+                    <div class="card" style="height: 550px; width: 300px">
+                        <img src="~/Images/@list.Book.Picture" style="height: 350px;width: 250px; margin-left: 25px;" class="card-img-top" alt="...">
+                        <div class="card-body" style="height: 150px; width: 200px; margin-left: 15px">
+                            <h3 class="card-title">@list.Book.Name</h3>
+                            <h5 class="card-text">@list.Book.Author.Name (@list.Book.Edition Edition)</h5>
+                            <h4>@list.Book.Price</h4>
+
+                        </div>
+                    </div>
+
+                </a>
+                @*</div>*@
+                <a href="" class="btn btn-success">Add to Cart</a>
+
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+
+
+
+@if (Model.Count == 0)
+{
+    <h3>Nothing Found</h3>
+}

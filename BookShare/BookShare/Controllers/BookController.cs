@@ -51,10 +51,42 @@ namespace BookShare.Controllers
 
         }
 
-        public ActionResult AllBookList()
+        public ActionResult AllBookList(string searchBookName, string searchAuthor)
         {
+
+            int check = 0;
+            if (searchBookName != "") check++;
+            if (searchAuthor != "") check++;
+
             BookSharingEntities db = new BookSharingEntities();
-            var list = db.Books.ToList();
+            List<Book> list;
+
+            if ((searchBookName == null && searchAuthor == null) || check == 0)
+            {
+                list = db.Books.ToList();
+            }
+            else if (check == 1 && searchAuthor!="")
+            {
+                list = (from x in db.Books
+                        where x.Author.Name.Contains(searchAuthor) 
+                        select x).ToList();
+            }
+            else if (check == 1 && searchBookName != "")
+            {
+                list = (from x in db.Books
+                        where x.Name.Contains(searchBookName)
+                        select x).ToList();
+            }
+            else
+            {
+
+                list = (from x in db.Books
+                        where x.Author.Name.Contains(searchAuthor) &&
+                        x.Name.Contains(searchBookName)
+
+                        select x).ToList();
+
+            }
 
             var config = new MapperConfiguration(cfg => cfg.CreateMap<Book, BookAuthorModel>());
             var mapper = new Mapper(config);

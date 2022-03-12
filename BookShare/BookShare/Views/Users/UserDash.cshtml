@@ -2,11 +2,12 @@
 @{
     ViewBag.Title = "UserDash";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
+    @*<link href="@Url.Content("~/ExternalCSS/Card.css")" rel="stylesheet" type="text/css" />*@
 }
 
 @*<head>
-    <link href="@Url.Content("~/ExternalCSS/Card.css")" rel="stylesheet" type="text/css" />
-</head>*@
+        <link href="@Url.Content("~/ExternalCSS/Card.css")" rel="stylesheet" type="text/css" />
+ </head>*@
 
 <h2>UserDash</h2>
 
@@ -22,7 +23,8 @@
 
 <a class="btn btn-danger" href="/Login/Logout">Log Out</a>
 
-<br /><br />
+<br />
+<br />
 
 <a class="btn btn-success" href="/Users/Edit/@Session["userId"]">Update</a>
 <a class="btn btn-primary" href="/Users/AddCart">Cart</a>

@@ -99,7 +99,9 @@ namespace BookShare.Controllers
             BookSharingEntities db = new BookSharingEntities();
             List<int> orderIds= (from x in db.OrderDetails
                       where x.SellerId.Equals(id)
-                      select x.OrderId).ToList();
+                      select x.OrderId).Distinct().ToList();
+
+            
 
             List<Order> orders = new List<Order>();
 

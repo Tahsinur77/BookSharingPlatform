@@ -160,7 +160,51 @@ namespace BookShare.Controllers
             db.Entry(order).CurrentValues.SetValues(can);
 
             db.SaveChanges();
-            return RedirectToAction("OrderViewForSeller");
+            return RedirectToAction("OrderViewForSeller", "Sellers");
+        }
+        public ActionResult Sold(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var order = (from del in db.Orders
+                         where del.Id.Equals(id)
+                         select del).FirstOrDefault();
+
+            Order can = new Order();
+            can.Id = order.Id;
+            can.UserId = order.UserId;
+            can.Status = "Sold";
+
+            db.SaveChanges();
+
+            var orderDetails = (from x in db.OrderDetails
+                                where x.OrderId.Equals(order.Id)
+                                select x).ToList();
+            foreach(var a in orderDetails)
+            {
+                var sellBook = (from y in db.BookDetails
+                                where y.BookId.Equals(a.BookId)
+                                select y).FirstOrDefault();
+               
+                var shopBook = new BookDetail();
+                shopBook.Id = sellBook.Id;
+                shopBook.SellerId = sellBook.SellerId;
+                shopBook.BookId = sellBook.BookId;
+                shopBook.ShopId = sellBook.ShopId;
+                shopBook.BookQuantity = (System.Convert.ToInt32(sellBook.BookQuantity)- System.Convert.ToInt32(a.Quantity)).ToString();
+                
+                db.Entry(sellBook).CurrentValues.SetValues(shopBook);
+                db.SaveChanges();
+            }
+
+            db.Entry(order).CurrentValues.SetValues(can);
+
+            Sell sell = new Sell();
+            sell.OrderId = order.Id;
+            sell.Status = "Sold";
+            db.Sells.Add(sell);
+            db.SaveChanges();
+
+            return RedirectToAction("OrderViewForSeller", "Sellers");
         }
 
 

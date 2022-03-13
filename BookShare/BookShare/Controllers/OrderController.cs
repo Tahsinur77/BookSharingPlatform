@@ -98,5 +98,23 @@ namespace BookShare.Controllers
 
             return View(oods);
         }
+
+        public ActionResult CancleOrder(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var order = (from del in db.Orders
+                          where del.Id.Equals(id)
+                          select del).FirstOrDefault();
+            //db.Orders.Remove(order);
+            Order can = new Order();
+            can.Id = order.Id;
+            can.UserId = order.UserId;
+            can.Status = "Cancled";
+
+            db.Entry(order).CurrentValues.SetValues(can);
+
+            db.SaveChanges();
+            return RedirectToAction("OrderHistoryOfUser");
+        }
     }
 }

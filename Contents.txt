@@ -1,13 +1,10 @@
 ** Seller Dash
-	* Book Order List(From Users)
+	
 
 ** Admin Dash
 	
 
 ** UserDash
-	* Add To Cart -> SellerDash(OrderList)
-
-	* Search Book
 
 
 
@@ -15,3 +12,4 @@
 Extra features:
 	* Chat Box
 	* Seller Notification Box
+	* Return Book

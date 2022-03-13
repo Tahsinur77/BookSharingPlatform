@@ -20,32 +20,60 @@ namespace BookShare.Controllers
             var x = Session["cart"].ToString();
             List<int> bookIds = new JavaScriptSerializer().Deserialize<List<int>>(x);
 
-            Order order = new Order();
-            order.UserId = System.Convert.ToInt32(Session["userId"].ToString());
-            order.Status = "pending";
-
             BookSharingEntities db = new BookSharingEntities();
-            db.Orders.Add(order);
-            db.SaveChanges();
 
+
+            Dictionary<int, List<int>> dict = new Dictionary<int, List<int>>();
+            
+            //Book er id seller onujayi alada kora
             foreach (int id in bookIds)
             {
                 BookList b = new BookList();
                 var bookDetails = b.bookDetails(id);
-                bookDetails.BookQuantity = "1";
+                
 
-                OrderDetail od = new OrderDetail();
-                od.OrderId = order.Id;
-                od.BookId = bookDetails.BookId;
-                od.SellerId = bookDetails.SellerId;
-                od.Quantity = System.Convert.ToInt32(bookDetails.BookQuantity.ToString());
-                od.price = bookDetails.Book.Price;
-                od.ShopId = bookDetails.ShopId;
+                if (dict.ContainsKey(bookDetails.SellerId))
+                {
+                    dict[bookDetails.SellerId].Add(id);
+                }
+                else
+                {
+                    dict.Add(bookDetails.SellerId, new List<int>());
+                    dict[bookDetails.SellerId].Add(id);
+                }
 
-                db.OrderDetails.Add(od);
-                db.SaveChanges();
             }
 
+            //per seller er booklist er id diye kaj kora
+            foreach (var seller in dict)
+            {
+                //per seller er book list neya
+                List<int> sBookIds = seller.Value;
+
+                Order order = new Order();
+                order.UserId = System.Convert.ToInt32(Session["userId"].ToString());
+                order.Status = "pending";
+                db.Orders.Add(order);
+                db.SaveChanges();
+
+                foreach (int id in sBookIds)
+                {
+                    BookList b = new BookList();
+                    var bookDetails = b.bookDetails(id);
+                    bookDetails.BookQuantity = "1";
+
+                    OrderDetail od = new OrderDetail();
+                    od.OrderId = order.Id;
+                    od.BookId = bookDetails.BookId;
+                    od.SellerId = bookDetails.SellerId;
+                    od.Quantity = System.Convert.ToInt32(bookDetails.BookQuantity.ToString());
+                    od.price = bookDetails.Book.Price;
+                    od.ShopId = bookDetails.ShopId;
+
+                    db.OrderDetails.Add(od);
+                    db.SaveChanges();
+                }
+            }
             Session.Remove("cart");
 
             return RedirectToAction("UserDash", "Users");
@@ -116,5 +144,7 @@ namespace BookShare.Controllers
             db.SaveChanges();
             return RedirectToAction("OrderHistoryOfUser");
         }
+
+        
     }
 }

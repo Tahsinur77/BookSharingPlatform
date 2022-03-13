@@ -1,0 +1,70 @@
+﻿@model List<BookShare.Models.Entities.OrderOrderDetailsModel>
+@{
+    ViewBag.Title = "OrderViewForSeller";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2>OrderViewForSeller</h2>
+
+<form action="/Sellers/OrderViewForSeller" method="get">
+    <select name="search">
+        <option value="">None</option>
+        <option value="pending">Pending</option>
+        <option value="Cancled">Cancled</option>
+        <option value="Approved">Approve</option>
+        <option value="Stock Out">Stock Out</option>
+    </select>
+    <input type="submit" value="Search" />
+</form>
+
+
+
+@foreach (var orders in Model)
+{
+    <table class="table">
+        <tr>
+            <th>Cover</th>
+            <th>Book Name</th>
+            <th>Seller Name</th>
+            <th>Price</th>
+            <th>Genre</th>
+            <th>Edition</th>
+            <th>Language</th>
+            <th>Country</th>
+            <th>Publisher</th>
+            <th>Page</th>
+            <th>Shop Number</th>
+            <th>Shop Name</th>
+            <th>Quantity</th>
+        </tr>
+        @foreach (var od in orders.orderDetails)
+        {
+            <tr>
+                <td><img style="height: 100px; width: 100px" src="~/Images/@od.Book.Picture" /></td>
+                <td>@od.Book.Name</td>
+                <td>@od.User.Name</td>
+                <td>@od.Book.Price</td>
+                <td>@od.Book.Category</td>
+                <td>@od.Book.Edition</td>
+                <td>@od.Book.Language</td>
+                <td>@od.Book.Country</td>
+                <td>@od.Book.Publisher</td>
+                <td>@od.Book.NumberOfPages</td>
+                <td>@od.Shop.ShopNumber</td>
+                <td>@od.Shop.Name</td>
+                <td>@od.Quantity</td>
+            </tr>
+        }
+    </table>
+    if (orders.Status == "pending")
+    {
+        <a class="btn btn-danger" href="/Order/CancleOrder/@orders.Id" style="float:right;"> Cancle Order </a>
+        <br />
+    }
+    <br />
+    <br />
+}
+@if(Model.Count == 0)
+{
+    <h3>Nothing Found</h3>
+}

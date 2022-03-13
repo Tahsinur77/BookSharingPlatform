@@ -295,6 +295,7 @@
     <Content Include="Views\Users\AddCart.cshtml" />
     <Content Include="Views\Order\OrderHistoryOfUser.cshtml" />
     <Content Include="Views\Users\AllRequestedBookList.cshtml" />
+    <Content Include="Views\Sellers\OrderViewForSeller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

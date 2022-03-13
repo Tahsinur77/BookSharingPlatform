@@ -9,8 +9,8 @@
 <!--<table class="table">
     <tr>
         <th>Cover</th>-->
-        @*<th>Author Name</th>*@
-        <!--<th>Book Name</th>
+@*<th>Author Name</th>*@
+<!--<th>Book Name</th>
         <th>Seller Name</th>
         <th>Price</th>
         <th>Genre</th>
@@ -28,14 +28,19 @@
 
 </table>-->
 
+
+
 @foreach (var orders in Model)
 {
-    <input type="hidden" value="@orders.Id;" />
-
-    <input type="hidden" value="@orders.UserId;" />
 
 
-    
+    if (orders.Status != "pending")
+    {
+        <h2>@orders.Status</h2>
+
+    }
+
+
     <table class="table">
         <tr>
             <th>Cover</th>
@@ -54,6 +59,7 @@
             <th>Shop Name</th>
 
             <th>Quantity</th>
+            @*<th>Actions</th>*@
         </tr>
         @foreach (var od in orders.orderDetails)
         {
@@ -75,8 +81,15 @@
                 <td>@od.Shop.ShopNumber</td>
                 <td>@od.Shop.Name</td>
                 <td>@od.Quantity</td>
+                @*<td><a class="btn btn-danger" href="/Order/CancleOrder/@od.Id">Cancle</a></td>*@
             </tr>
         }
     </table>
-    <br /> <br />
+    if (orders.Status == "pending")
+    {
+        <a class="btn btn-danger" href="/Order/CancleOrder/@orders.Id" style="float:right;"> Cancle Order </a>
+        <br />
+    }
+    <br />
+    <br />
 }

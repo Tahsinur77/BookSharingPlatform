@@ -145,6 +145,24 @@ namespace BookShare.Controllers
             return RedirectToAction("OrderHistoryOfUser");
         }
 
-        
+        public ActionResult StockOutForSeller(int id)
+        {
+            BookSharingEntities db = new BookSharingEntities();
+            var order = (from del in db.Orders
+                         where del.Id.Equals(id)
+                         select del).FirstOrDefault();
+            
+            Order can = new Order();
+            can.Id = order.Id;
+            can.UserId = order.UserId;
+            can.Status = "Stock Out";
+
+            db.Entry(order).CurrentValues.SetValues(can);
+
+            db.SaveChanges();
+            return RedirectToAction("OrderViewForSeller");
+        }
+
+
     }
 }

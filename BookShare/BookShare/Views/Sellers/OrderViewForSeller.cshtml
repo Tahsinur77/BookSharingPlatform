@@ -10,8 +10,8 @@
     <select name="search">
         <option value="">None</option>
         <option value="pending">Pending</option>
-        <option value="Cancled">Cancled</option>
-        <option value="Approved">Approve</option>
+        <option value="Cancled">Cancelled</option>
+        <option value="Sold">Approve</option>
         <option value="Stock Out">Stock Out</option>
     </select>
     <input type="submit" value="Search" />
@@ -21,6 +21,12 @@
 
 @foreach (var orders in Model)
 {
+    <br />
+    <h2>@orders.Status</h2>
+    
+    <br />
+
+
     <table class="table">
         <tr>
             <th>Cover</th>
@@ -58,13 +64,14 @@
     </table>
     if (orders.Status == "pending")
     {
-        <a class="btn btn-danger" href="/Order/CancleOrder/@orders.Id" style="float:right;"> Cancle Order </a>
+        <a class="btn btn-success" href="" style="float:right;"> Approve </a>
+        <a class="btn btn-danger" href="/Order/StockOutForSeller/@orders.Id" style="float:right;"> Stock Out </a>
         <br />
     }
     <br />
     <br />
 }
-@if(Model.Count == 0)
+@if (Model.Count == 0)
 {
     <h3>Nothing Found</h3>
 }
